@@ -20,46 +20,32 @@ namespace F1
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string uname = txtUsername.Text;
-            string email = txtRegNum.Text;
+            if (txtUsername.Text == "" || txtEmail.Text == "" || txtPassword.Text == "")
+            {
+                Response.Write("<script>alert('Missing information');</script>");
+            }
+            string email = txtEmail.Text;
             string password = txtPassword.Text;
 
             using (SqlConnection conn = new SqlConnection(strconn))
             {
-                try
-                {
-                    conn.Open();
 
-                    string qry = "SELECT COUNT(*) FROM tbl_User_login WHERE email = @Email AND password = @Password";
+                    conn.Open();
+                   //string q1 = "SELECT ur.U_id, ur.U_name FROM User_registration ur JOIN User_login ul ON ur.U_id = ul.U_id";
+                   string qry = "SELECT COUNT(*) FROM User_login WHERE @email=@Email AND password=@Password";
                     SqlCommand cmd = new SqlCommand(qry, conn);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", password);
-
-                    string ins = "INSERT INTO tbl_User_Login VALUES(@U_name,@Email,@Password)";
-                    SqlCommand sd = new SqlCommand(ins, conn);
-                    sd.Parameters.AddWithValue("U_name", uname);
-                    sd.Parameters.AddWithValue("Email", email);
-                    sd.Parameters.AddWithValue("Password", password);
-                    sd.ExecuteNonQuery();
-
-
                     int result = Convert.ToInt16(cmd.ExecuteScalar()); 
 
                     if (result == 0)
                     {
-                        Response.Write("Invalid login credentials!");
+                            Response.Write("<script>alert('Invalid login credentials!');</script>");
                     }
                     else
                     {
-                        MessageBox.Show("Redirecting to Home page! Welcome!");
-                        //Response.Redirect("Electronic.aspx");
+                            Response.Write("<script>alert('Redirecting to Home page! Welcome!');</script>");
                     }
-                   
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("Error: " + ex.Message); 
-                }
             }
         }
     }
