@@ -26,7 +26,7 @@ namespace F1
             SqlConnection conn = new SqlConnection(strconn);
             string qry = "INSERT INTO User_Registration (U_name,Middle_name,Last_name,Contact_number,Email,Password,Confirm_password,Currency,Income_source) VALUES(@U_name,@Middle_name,@Last_name,@Contact_number,@Email,@Password,@Confirm_password,@Currency,@Income_source)";
             SqlCommand cmd = new SqlCommand(qry, conn);
-            cmd.Parameters.AddWithValue("@U_id", txtRegNum.Text);
+            //cmd.Parameters.AddWithValue("@U_id", txtRegNum.Text);
             cmd.Parameters.AddWithValue("@U_name", txtFname.Text);
             cmd.Parameters.AddWithValue("@Middle_name", txtMname.Text);
             cmd.Parameters.AddWithValue("@Last_name", txtLname.Text);
