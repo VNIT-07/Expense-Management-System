@@ -115,11 +115,11 @@
         <div class="form-container">
             <h2>User Registration</h2>
             <table>
-                <!-- Registration Number -->
+                <!-- Registration Number
                 <tr>
-                    <td><label for="txtRegNum">Registration Number:</label></td>
-                    <td><asp:TextBox ID="txtRegNum" runat="server" placeholder="Enter registration number"></asp:TextBox></td>
-                </tr>
+    <td><label for="txtRegNum">Registration Number:</label></td>
+    <td><asp:TextBox ID="txtRegNum" runat="server" placeholder="Enter registration number"></asp:TextBox></td>
+</tr> -->
 
                 <!-- First Name -->
                 <tr>
@@ -142,7 +142,7 @@
                 <!-- Contact Number -->
                 <tr>
                     <td><label for="txtContact">Contact Number:</label></td>
-                    <td><asp:TextBox ID="txtContact" runat="server" placeholder="Enter contact number" TextMode="Phone"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtContact" runat="server" placeholder="Enter contact number" TextMode="Number"></asp:TextBox></td>
                 </tr>
 
                 <!-- Email -->
@@ -193,7 +193,7 @@
                 <!-- Submit Button -->
                 <tr>
                     <td colspan="2">
-                        <asp:Button ID="btnSubmit" runat="server" Text="Register" />
+                        <asp:Button ID="btnSubmit" runat="server" Text="Register" BackColor="#99CCFF" OnClick="btnSubmit_Click" />
                     </td>
                 </tr>
             </table>

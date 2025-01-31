@@ -4,6 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Expense Management System - Login</title>
+   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>-->
+
     <style>
         body {
             margin: 0;
@@ -82,7 +85,7 @@
             border: 1px solid #ced4da;
             border-radius: 4px;
         }
-
+        
         .login-container button {
             width: 100%;
             padding: 10px;
@@ -127,11 +130,11 @@
                 
                 <asp:TextBox ID="txtUsername" runat="server" placeholder="Username" Width="362px"></asp:TextBox>
                 
-                <asp:TextBox ID="txtRegNum" runat="server" TextMode="Email" placeholder="Email / Registration Number" Width="362px"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" placeholder="Email / Registration Number" Width="362px"></asp:TextBox>
                 
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" Width="363px"></asp:TextBox>
                 
-                <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" BackColor="#99CCFF" />
+                <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" BackColor="#99CCFF" Width="385px" />
                 
                 <a href="forgot_password.aspx">Forgot password?</a>
                 <u><a href="User_SignIn.aspx">Sign in</a></u>

@@ -29,24 +29,26 @@ namespace F1
 
             using (SqlConnection conn = new SqlConnection(strconn))
             {
-
+               
                     conn.Open();
                    //string q1 = "SELECT ur.U_id, ur.U_name FROM User_registration ur JOIN User_login ul ON ur.U_id = ul.U_id";
-                   string qry = "SELECT COUNT(*) FROM User_login WHERE @email=@Email AND password=@Password";
+                    string qry = "SELECT COUNT(*) FROM User_login WHERE @email=@Email AND password=@Password";
                     SqlCommand cmd = new SqlCommand(qry, conn);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", password);
-                    int result = Convert.ToInt16(cmd.ExecuteScalar()); 
+                    int result = Convert.ToInt16(cmd.ExecuteScalar());
 
-                    if (result == 0)
-                    {
+                        if (result == 0)
+                        {
                             Response.Write("<script>alert('Invalid login credentials!');</script>");
-                    }
-                    else
-                    {
+
+                        }
+                        else
+                        {
                             Response.Write("<script>alert('Redirecting to Home page! Welcome!');</script>");
+                        }
                     }
+                }
             }
         }
-    }
-}
+    
