@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin_dashboard.aspx" />
     <Content Include="Admin_Login.aspx" />
     <Content Include="App_Data\Home.mdf" />
     <Content Include="App_Data\Home_log.ldf">
@@ -98,12 +99,19 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="terms_condition.html" />
+    <Content Include="User_dashboard.aspx" />
     <Content Include="User_login.aspx" />
     <Content Include="User_Registration.aspx" />
-    <Content Include="User_SignIn.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin_dashboard.aspx.cs">
+      <DependentUpon>Admin_dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_dashboard.aspx.designer.cs">
+      <DependentUpon>Admin_dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin_Login.aspx.cs">
       <DependentUpon>Admin_Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,6 +123,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User_dashboard.aspx.cs">
+      <DependentUpon>User_dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_dashboard.aspx.designer.cs">
+      <DependentUpon>User_dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User_login.aspx.cs">
       <DependentUpon>User_login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -128,13 +143,6 @@
     </Compile>
     <Compile Include="User_Registration.aspx.designer.cs">
       <DependentUpon>User_Registration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User_SignIn.aspx.cs">
-      <DependentUpon>User_SignIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User_SignIn.aspx.designer.cs">
-      <DependentUpon>User_SignIn.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #F5F5F5;
         }
 
         .navbar {
@@ -18,7 +18,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 14px 40px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -52,9 +52,9 @@
         .form-container {
             width: 50%;
             margin: 50px auto;
-            border: 1px solid #ccc;
+            border: 1px solid #DDDDDD;
             padding: 20px;
-            background-color: #fff;
+            background-color: #FFFFFF;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -98,12 +98,20 @@
         .form-container button:hover {
             background-color: #0056b3;
         }
+        .auto-style1 {
+            margin-left: 258px;
+        }
+        .auto-style2 {
+            height: 57px;
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <div class="navbar">
-        <h1>Expense Management System</h1>
+<h1 style="color: white;">
+    <a href="User_login.aspx" style="color: white; text-decoration: none;">Expense.web</a>
+</h1>
         <ul>
             <li><a href="User_Login.aspx">&#128101; User Login</a></li>
             <li><a href="Admin_Login.aspx">&#128274; Admin Login</a></li>
@@ -113,13 +121,13 @@
     <!-- Registration Form -->
     <form id="form1" runat="server">
         <div class="form-container">
-            <h2>User Registration</h2>
+            <h2 style="font-family: 'Candara Light'; font-size: x-large;">User Registration</h2>
             <table>
                 <!-- Registration Number
                 <tr>
-    <td><label for="txtRegNum">Registration Number:</label></td>
-    <td><asp:TextBox ID="txtRegNum" runat="server" placeholder="Enter registration number"></asp:TextBox></td>
-</tr> -->
+                    <td><label for="txtRegNum">Registration Number:</label></td>
+                    <td><asp:TextBox ID="txtRegNum" runat="server" placeholder="Enter registration number"></asp:TextBox></td>
+                </tr> -->
 
                 <!-- First Name -->
                 <tr>
@@ -135,8 +143,8 @@
 
                 <!-- Last Name -->
                 <tr>
-                    <td><label for="txtLname">Last Name:</label></td>
-                    <td><asp:TextBox ID="txtLname" runat="server" placeholder="Enter last name"></asp:TextBox></td>
+                    <td class="auto-style2"><label for="txtLname">Last Name:</label></td>
+                    <td class="auto-style2"><asp:TextBox ID="txtLname" runat="server" placeholder="Enter last name"></asp:TextBox></td>
                 </tr>
 
                 <!-- Contact Number -->
@@ -157,10 +165,10 @@
                     <td><asp:TextBox ID="txtPassword" runat="server" placeholder="Enter password" TextMode="Password"></asp:TextBox></td>
                 </tr>
 
-                <!-- Confirm Password -->
+                <!-- Password -->
                 <tr>
                     <td><label for="txtCpassword">Confirm Password:</label></td>
-                    <td><asp:TextBox ID="txtCpassword" runat="server" placeholder="Confirm password" TextMode="Password"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtCpassword" runat="server" placeholder="Enter password again" TextMode="Password"></asp:TextBox></td>
                 </tr>
 
                 <!-- Currency Preference -->
@@ -193,7 +201,7 @@
                 <!-- Submit Button -->
                 <tr>
                     <td colspan="2">
-                        <asp:Button ID="btnSubmit" runat="server" Text="Register" BackColor="#99CCFF" OnClick="btnSubmit_Click" />
+                        <asp:Button ID="btnSubmit" runat="server" Text="Register" BackColor="#28A745" OnClick="btnSubmit_Click" CssClass="auto-style1" ForeColor="White" Width="239px" />
                     </td>
                 </tr>
             </table>

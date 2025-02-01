@@ -105,9 +105,9 @@
             <h2 style="font-family: 'Century Gothic'">Admin Login</h2>
             <table>
                 <tr>
-                    <td class="auto-style1" style="font-family: 'Century Gothic'; font-size: large;">Username:</td>
+                    <td class="auto-style1" style="font-family: 'Century Gothic'; font-size: large;">Email:</td>
                     <td>
-                        <asp:TextBox ID="txtUsername" runat="server" placeholder="Enter username" TextMode="Email" Width="191px"></asp:TextBox>
+                        <asp:TextBox ID="txtUsername" runat="server" placeholder="Enter Email" TextMode="Email" Width="191px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

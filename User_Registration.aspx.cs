@@ -23,23 +23,28 @@ namespace F1
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (txtPassword.Text != txtCpassword.Text)
+            {
+                Response.Write("<script>alert('Password and Confirm Password do not match!');</script>");
+                return;
+            }
             SqlConnection conn = new SqlConnection(strconn);
-            string qry = "INSERT INTO User_Registration (U_name,Middle_name,Last_name,Contact_number,Email,Password,Confirm_password,Currency,Income_source) VALUES(@U_name,@Middle_name,@Last_name,@Contact_number,@Email,@Password,@Confirm_password,@Currency,@Income_source)";
+            string qry = "INSERT INTO User_Registration (U_name,Middle_name,Last_name,Contact_number,Email,Password,Currency,Income_source) VALUES(@U_name,@Middle_name,@Last_name,@Contact_number,@Email,@Password,@Currency,@Income_source)";
             SqlCommand cmd = new SqlCommand(qry, conn);
-            //cmd.Parameters.AddWithValue("@U_id", txtRegNum.Text);
             cmd.Parameters.AddWithValue("@U_name", txtFname.Text);
             cmd.Parameters.AddWithValue("@Middle_name", txtMname.Text);
             cmd.Parameters.AddWithValue("@Last_name", txtLname.Text);
             cmd.Parameters.AddWithValue("@Contact_number", txtContact.Text);
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-            cmd.Parameters.AddWithValue("@Confirm_password", txtCpassword.Text);
             cmd.Parameters.AddWithValue("@Currency", ddlCurrency.Text);
             cmd.Parameters.AddWithValue("@Income_source", txtIncomeSource.Text);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
             Response.Write("<script>alert('Registration successful!');</script>");
+            Response.Redirect("User_dashboard.aspx");
+
 
         }
 

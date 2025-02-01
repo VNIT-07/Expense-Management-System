@@ -33,22 +33,23 @@ namespace F1
                 {
                     conn.Open();
 
-                    string qry = "SELECT COUNT(*) FROM tbl_Admin_login WHERE email = @Admin_name AND password = @Password";
+                    string qry = "SELECT COUNT(*) FROM Admin_Login WHERE email = @Email AND password = @Password";
 
                     SqlCommand cmd = new SqlCommand(qry, conn);
-                    cmd.Parameters.AddWithValue("@Admin_name", email);
+                    cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", password);
 
                     int result = Convert.ToInt32(cmd.ExecuteScalar());
 
                     if (result == 0)
                     {
-                        Response.Write("Invalid login credentials!");
+                        Response.Write("<script>alert('Invalid login credentials!');</script>");
+
                     }
                     else
                     {
-                        MessageBox.Show("Redirecting to Home page! Welcome!");
-                        //Response.Redirect("Electronic.aspx");
+                        //Response.Write("<script>alert('Redirecting to Home page! Welcome!');</script>");
+                        Response.Redirect("Admin_dashboard.aspx");
                     }
                 }
                 catch (Exception ex)

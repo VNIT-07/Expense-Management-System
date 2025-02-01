@@ -4,9 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Expense Management System - Login</title>
-   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>-->
-
+  
     <style>
         body {
             margin: 0;
@@ -136,8 +134,7 @@
                 
                 <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" BackColor="#99CCFF" Width="385px" />
                 
-                <a href="forgot_password.aspx">Forgot password?</a>
-                <u><a href="User_SignIn.aspx">Sign in</a></u>
+                <a href="forgot_password.aspx">Forgot password?</a>&nbsp;
 
                 <br />&nbsp;
 

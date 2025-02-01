@@ -47,7 +47,8 @@ namespace F1
                     }
                     else
                     {
-                        Response.Write("<script>alert('Redirecting to Home page! Welcome!');</script>");
+                        //Response.Write("<script>alert('Redirecting to Home page! Welcome!');</script>");
+                        Response.Redirect("User_dashboard.aspx");
                     }
                 }
             }
