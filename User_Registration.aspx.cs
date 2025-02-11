@@ -23,6 +23,12 @@ namespace F1
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            
+            if (txtFname.Text == "" || txtMname.Text == "" || txtLname.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || txtPassword.Text == "" || txtCpassword.Text == "" || ddlCurrency.Text == "" || txtIncomeSource.Text == "")
+            {
+                Response.Write("<script>alert('Missing information');</script>");
+                return;
+            }
             if (txtPassword.Text != txtCpassword.Text)
             {
                 Response.Write("<script>alert('Password and Confirm Password do not match!');</script>");

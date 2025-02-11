@@ -1,211 +1,77 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User_Registration.aspx.cs" Inherits="F1.User_Registration" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>User Registration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #F5F5F5;
-        }
-
-        .navbar {
-            background-color: #343a40;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .navbar h1 {
-            color: white;
-            font-size: 18px;
-            margin: 0;
-        }
-
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .navbar ul li a:hover {
-            text-decoration: underline;
-        }
-
-        .form-container {
-            width: 50%;
-            margin: 50px auto;
-            border: 1px solid #DDDDDD;
-            padding: 20px;
-            background-color: #FFFFFF;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-container table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .form-container td {
-            padding: 10px;
-        }
-
-        .form-container input,
-        .form-container select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .form-container input[type="checkbox"] {
-            width: auto;
-        }
-
-        .form-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .form-container button:hover {
-            background-color: #0056b3;
-        }
-        .auto-style1 {
-            margin-left: 258px;
-        }
-        .auto-style2 {
-            height: 57px;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="navbar">
-<h1 style="color: white;">
-    <a href="User_login.aspx" style="color: white; text-decoration: none;">Expense.web</a>
-</h1>
-        <ul>
-            <li><a href="User_Login.aspx">&#128101; User Login</a></li>
-            <li><a href="Admin_Login.aspx">&#128274; Admin Login</a></li>
-        </ul>
-    </div>
     
-    <!-- Registration Form -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-light">
     <form id="form1" runat="server">
-        <div class="form-container">
-            <h2 style="font-family: 'Candara Light'; font-size: x-large;">User Registration</h2>
-            <table>
-                <!-- Registration Number
-                <tr>
-                    <td><label for="txtRegNum">Registration Number:</label></td>
-                    <td><asp:TextBox ID="txtRegNum" runat="server" placeholder="Enter registration number"></asp:TextBox></td>
-                </tr> -->
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="User_login.aspx">Expense Management System</a>
+                <div class="ms-auto">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="User_Login.aspx"><i class="bi bi-person"></i> User Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Admin_Login.aspx"><i class="bi bi-lock"></i> Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-                <!-- First Name -->
-                <tr>
-                    <td><label for="txtFname">First Name:</label></td>
-                    <td><asp:TextBox ID="txtFname" runat="server" placeholder="Enter first name"></asp:TextBox></td>
-                </tr>
-
-                <!-- Middle Name -->
-                <tr>
-                    <td><label for="txtMname">Middle Name:</label></td>
-                    <td><asp:TextBox ID="txtMname" runat="server" placeholder="Enter middle name"></asp:TextBox></td>
-                </tr>
-
-                <!-- Last Name -->
-                <tr>
-                    <td class="auto-style2"><label for="txtLname">Last Name:</label></td>
-                    <td class="auto-style2"><asp:TextBox ID="txtLname" runat="server" placeholder="Enter last name"></asp:TextBox></td>
-                </tr>
-
-                <!-- Contact Number -->
-                <tr>
-                    <td><label for="txtContact">Contact Number:</label></td>
-                    <td><asp:TextBox ID="txtContact" runat="server" placeholder="Enter contact number" TextMode="Number"></asp:TextBox></td>
-                </tr>
-
-                <!-- Email -->
-                <tr>
-                    <td><label for="txtEmail">Email:</label></td>
-                    <td><asp:TextBox ID="txtEmail" runat="server" placeholder="Enter email" TextMode="Email"></asp:TextBox></td>
-                </tr>
-
-                <!-- Password -->
-                <tr>
-                    <td><label for="txtPassword">Password:</label></td>
-                    <td><asp:TextBox ID="txtPassword" runat="server" placeholder="Enter password" TextMode="Password"></asp:TextBox></td>
-                </tr>
-
-                <!-- Password -->
-                <tr>
-                    <td><label for="txtCpassword">Confirm Password:</label></td>
-                    <td><asp:TextBox ID="txtCpassword" runat="server" placeholder="Enter password again" TextMode="Password"></asp:TextBox></td>
-                </tr>
-
-                <!-- Currency Preference -->
-                <tr>
-                    <td><label for="ddlCurrency">Currency Preference:</label></td>
-                    <td>
-                        <asp:DropDownList ID="ddlCurrency" runat="server">
-                            <asp:ListItem Text="Select Currency" Value="" />
-                            <asp:ListItem Text="USD" Value="USD" />
-                            <asp:ListItem Text="INR" Value="INR" />
-                            <asp:ListItem Text="EUR" Value="EUR" />
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-
-                <!-- Income Source -->
-                <tr>
-                    <td><label for="txtIncomeSource">Income Source:</label></td>
-                    <td><asp:TextBox ID="txtIncomeSource" runat="server" placeholder="Enter income source"></asp:TextBox></td>
-                </tr>
-
-                <!-- Terms and Conditions -->
-                <tr>
-                    <td colspan="2">
-                        <asp:CheckBox ID="chkTerms" runat="server" />
-                        <label for="chkTerms">I agree to the <a href="terms_condition.html">terms and conditions</a></label>
-                    </td>
-                </tr>
-
-                <!-- Submit Button -->
-                <tr>
-                    <td colspan="2">
-                        <asp:Button ID="btnSubmit" runat="server" Text="Register" BackColor="#28A745" OnClick="btnSubmit_Click" CssClass="auto-style1" ForeColor="White" Width="239px" />
-                    </td>
-                </tr>
-            </table>
+        <!-- Registration Form -->
+        <div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
+            <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
+                <h2 class="text-center mb-4">User Registration</h2>
+                
+                <div class="mb-3">
+                    <asp:TextBox ID="txtFname" runat="server" CssClass="form-control" placeholder="First Name"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:TextBox ID="txtMname" runat="server" CssClass="form-control" placeholder="Middle Name"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:TextBox ID="txtLname" runat="server" CssClass="form-control" placeholder="Last Name"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:TextBox ID="txtContact" runat="server" CssClass="form-control" TextMode="Number" placeholder="Contact Number"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Email"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Password"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:TextBox ID="txtCpassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Confirm Password"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:DropDownList ID="ddlCurrency" runat="server" CssClass="form-select">
+                        <asp:ListItem Text="Select Currency" Value="" />
+                        <asp:ListItem Text="USD" Value="USD" />
+                        <asp:ListItem Text="INR" Value="INR" />
+                        <asp:ListItem Text="EUR" Value="EUR" />
+                    </asp:DropDownList>
+                </div>
+                <div class="mb-3">
+                    <asp:TextBox ID="txtIncomeSource" runat="server" CssClass="form-control" placeholder="Income Source"></asp:TextBox>
+                </div>
+                <div class="form-check mb-3">
+                    <asp:CheckBox ID="chkTerms" runat="server" CssClass="form-check-input" />
+                    <label class="form-check-label" for="chkTerms">I agree to the <a href="terms_condition.html">terms and conditions</a></label>
+                </div>
+                <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-success w-100" Text="Register" OnClick="btnSubmit_Click" />
+            </div>
         </div>
     </form>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
