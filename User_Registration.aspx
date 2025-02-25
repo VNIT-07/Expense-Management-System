@@ -34,9 +34,6 @@
                     <asp:TextBox ID="txtFname" runat="server" CssClass="form-control" placeholder="First Name"></asp:TextBox>
                 </div>
                 <div class="mb-3">
-                    <asp:TextBox ID="txtMname" runat="server" CssClass="form-control" placeholder="Middle Name"></asp:TextBox>
-                </div>
-                <div class="mb-3">
                     <asp:TextBox ID="txtLname" runat="server" CssClass="form-control" placeholder="Last Name"></asp:TextBox>
                 </div>
                 <div class="mb-3">
@@ -51,16 +48,17 @@
                 <div class="mb-3">
                     <asp:TextBox ID="txtCpassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Confirm Password"></asp:TextBox>
                 </div>
+                <!-- Country Dropdown -->
                 <div class="mb-3">
-                    <asp:DropDownList ID="ddlCurrency" runat="server" CssClass="form-select">
-                        <asp:ListItem Text="Select Currency" Value="" />
-                        <asp:ListItem Text="USD" Value="USD" />
-                        <asp:ListItem Text="INR" Value="INR" />
-                        <asp:ListItem Text="EUR" Value="EUR" />
+                    <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-select">
+                        <asp:ListItem Text="Select Country" Value="" />
+                        <asp:ListItem Text="United States" Value="US" />
+                        <asp:ListItem Text="India" Value="IN" />
+                        <asp:ListItem Text="United Kingdom" Value="UK" />
+                        <asp:ListItem Text="Canada" Value="CA" />
+                        <asp:ListItem Text="Australia" Value="AU" />
+                        <asp:ListItem Text="Other" Value="Other" />
                     </asp:DropDownList>
-                </div>
-                <div class="mb-3">
-                    <asp:TextBox ID="txtIncomeSource" runat="server" CssClass="form-control" placeholder="Income Source"></asp:TextBox>
                 </div>
                 <div class="form-check mb-3">
                     <asp:CheckBox ID="chkTerms" runat="server" CssClass="form-check-input" />

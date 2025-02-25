@@ -33,15 +33,6 @@ namespace F1
         protected global::System.Web.UI.WebControls.TextBox txtFname;
 
         /// <summary>
-        /// txtMname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMname;
-
-        /// <summary>
         /// txtLname control.
         /// </summary>
         /// <remarks>
@@ -87,22 +78,13 @@ namespace F1
         protected global::System.Web.UI.WebControls.TextBox txtCpassword;
 
         /// <summary>
-        /// ddlCurrency control.
+        /// ddlCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCurrency;
-
-        /// <summary>
-        /// txtIncomeSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIncomeSource;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
 
         /// <summary>
         /// chkTerms control.

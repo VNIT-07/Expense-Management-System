@@ -34,13 +34,13 @@
         }
 
         .profile-icon img {
-            border-radius: 50%; /* Makes the profile image circular */
+            border-radius: 50%; 
             width: 36px;
             height: 36px;
         }
 
         .logout-icon img {
-            border-radius: 50%; /* Makes the profile image circular */
+            border-radius: 50%; 
             width: 36px;
             height: 36px;
         }
