@@ -52,7 +52,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-custom">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <a href="/" class="navbar-brand">Expense.Web</a>
@@ -62,7 +61,6 @@
                     <img src="/images/profile.png" alt="Profile">
                 </a>
 
-                <!-- Logout Link -->
                 <a href="/Logout" class="logout-icon">
                     <i class="bi bi-box-arrow-right"></i>
                     <img src="/images/Logout.png">
@@ -71,7 +69,6 @@
         </div>
     </nav>
 
-    <!-- Add Bootstrap Icons 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>-->
 </body>
 </html>
