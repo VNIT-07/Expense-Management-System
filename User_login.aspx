@@ -12,6 +12,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
     <style>
+    .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #001a66;
+    padding: 10px 20px;
+}
+
+/* Prevent content from hiding behind navbar */
+body {
+    padding-top: 56px;
+}
+
     .footer {
         position: static;
         bottom: 0;
@@ -55,8 +69,12 @@
 
         <!-- Login Form -->
         <div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
-            <div class="card p-4 shadow-sm" style="max-width: 400px; width: 100%;">
-                <h2 class="text-center mb-4">User Login</h2>
+         <div class="card p-4 shadow-sm text-center" style="max-width: 400px; width: 100%;">
+            <div class="d-flex justify-content-center">
+                        <img src="img/UserIcon1.jpeg" alt="User Icon" style="width: 80px; height: 80px;">
+                    </div>
+
+                <h2 class="text-center mb-4"><h4>User Login</h4></h2>
                 
                 <div class="mb-3">
                     <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
