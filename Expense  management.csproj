@@ -90,6 +90,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Expense_Calculator.aspx" />
     <Content Include="Global.asax" />
     <Content Include="login.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="Admin_Login.aspx.designer.cs">
       <DependentUpon>Admin_Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Expense_Calculator.aspx.cs">
+      <DependentUpon>Expense_Calculator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Expense_Calculator.aspx.designer.cs">
+      <DependentUpon>Expense_Calculator.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

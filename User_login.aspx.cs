@@ -25,35 +25,30 @@ namespace F1
             if (txtUsername.Text == "" || txtEmail.Text == "" || txtPassword.Text == "")
             {
                 Response.Write("<script>alert('Missing information');</script>");
+                return;
             }
-            else
-            {
-                string email = txtEmail.Text;
-                string password = txtPassword.Text;
 
-                using (SqlConnection conn = new SqlConnection(strconn))
+
+            using (SqlConnection conn = new SqlConnection(strconn))
                 {
 
                     conn.Open();
                     string qry = "SELECT COUNT(*) FROM User_Registration WHERE email=@Email AND password=@Password";
 
                     SqlCommand cmd = new SqlCommand(qry, conn);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", password);
-                    int result = Convert.ToInt16(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                    int result = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    if (result == 0)
+                    if (result > 0)
                     {
-                        Response.Write("<script>alert('Invalid login credentials!');</script>");
-
+                        Response.Redirect("User_dashboard.aspx");
                     }
                     else
                     {
-                        //Response.Write("<script>alert('Redirecting to Home page! Welcome!');</script>");
-                        Response.Redirect("User_dashboard.aspx");
+                        Response.Write("<script>alert('Invalid login credentials!');</script>");
                     }
                 }
-            }
         }
     }
 }

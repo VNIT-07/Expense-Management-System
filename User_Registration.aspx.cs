@@ -24,7 +24,7 @@ namespace F1
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             
-            if (txtFname.Text == "" || txtMname.Text == "" || txtLname.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || txtPassword.Text == "" || txtCpassword.Text == "" || ddlCurrency.Text == "" || txtIncomeSource.Text == "")
+            if (txtFname.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || txtPassword.Text == "")
             {
                 Response.Write("<script>alert('Missing information');</script>");
                 return;
@@ -35,23 +35,18 @@ namespace F1
                 return;
             }
             SqlConnection conn = new SqlConnection(strconn);
-            string qry = "INSERT INTO User_Registration (U_name,Middle_name,Last_name,Contact_number,Email,Password,Currency,Income_source) VALUES(@U_name,@Middle_name,@Last_name,@Contact_number,@Email,@Password,@Currency,@Income_source)";
+            string qry = "INSERT INTO User_Registration (U_name,Contact_number,Email,Password,country) VALUES(@U_name,@Contact_number,@Email,@Password,@country)";
             SqlCommand cmd = new SqlCommand(qry, conn);
             cmd.Parameters.AddWithValue("@U_name", txtFname.Text);
-            cmd.Parameters.AddWithValue("@Middle_name", txtMname.Text);
-            cmd.Parameters.AddWithValue("@Last_name", txtLname.Text);
             cmd.Parameters.AddWithValue("@Contact_number", txtContact.Text);
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-            cmd.Parameters.AddWithValue("@Currency", ddlCurrency.Text);
-            cmd.Parameters.AddWithValue("@Income_source", txtIncomeSource.Text);
+            cmd.Parameters.AddWithValue("@country", ddlCountry.SelectedValue);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
             Response.Write("<script>alert('Registration successful!');</script>");
             Response.Redirect("User_dashboard.aspx");
-
-
         }
 
     }

@@ -20,13 +20,9 @@ namespace F1
 
         }
 
-        
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string email = txtUsername.Text;
-            string password = txtPassword.Text;
-
+           
             using (SqlConnection conn = new SqlConnection(strconn))
             {
                 try
@@ -36,8 +32,8 @@ namespace F1
                     string qry = "SELECT COUNT(*) FROM Admin_Login WHERE email = @Email AND password = @Password";
 
                     SqlCommand cmd = new SqlCommand(qry, conn);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Email", txtUsername.Text);
+                    cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
 
                     int result = Convert.ToInt32(cmd.ExecuteScalar());
 

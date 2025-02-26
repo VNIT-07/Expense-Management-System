@@ -15,7 +15,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="User_login.aspx">Expense Management System</a>
+                <a class="navbar-brand" href="User_login.aspx">Expense.web</a>
                 <div class="ms-auto">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="User_Login.aspx"><i class="bi bi-person"></i> User Login</a></li>
@@ -33,11 +33,9 @@
                 <div class="mb-3">
                     <asp:TextBox ID="txtFname" runat="server" CssClass="form-control" placeholder="First Name"></asp:TextBox>
                 </div>
+               
                 <div class="mb-3">
-                    <asp:TextBox ID="txtLname" runat="server" CssClass="form-control" placeholder="Last Name"></asp:TextBox>
-                </div>
-                <div class="mb-3">
-                    <asp:TextBox ID="txtContact" runat="server" CssClass="form-control" TextMode="Number" placeholder="Contact Number"></asp:TextBox>
+                    <asp:TextBox ID="txtContact" runat="server" CssClass="form-control" placeholder="Contact Number"></asp:TextBox>
                 </div>
                 <div class="mb-3">
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Email"></asp:TextBox>
