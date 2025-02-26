@@ -60,6 +60,21 @@
         .logout-icon i:hover {
             color: lightgray;
         }
+         .footer {
+             position: static;
+             bottom: 0;
+             width: 100%;
+         }
+
+         .footer a {
+             text-decoration: none;
+             font-size: 18px;
+             transition: color 0.3s ease;
+         }
+
+         .footer a:hover {
+             color: #3498db;
+         }
     </style>
 </head>
 <body>
@@ -83,6 +98,17 @@
         </div>
     </nav>
 
+        <footer class="footer bg-dark text-light text-center py-3">
+    <div class="container">
+        <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
+        <div>
+            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
     <!-- Bootstrap Icons Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
 

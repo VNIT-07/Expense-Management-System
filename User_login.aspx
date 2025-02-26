@@ -11,6 +11,24 @@
     <!-- Bootstrap Icons (Optional) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+    <style>
+    .footer {
+        position: static;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .footer a {
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+        color: #3498db;
+    }
+
+</style>
 <body class="bg-light">
     <form id="form1" runat="server">
         
@@ -62,6 +80,17 @@
 
     </form>
 
+        <footer class="footer bg-dark text-light text-center py-3">
+    <div class="container">
+        <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
+        <div>
+            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
     <!-- Bootstrap JS (For interactive components like Navbar, Modals, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

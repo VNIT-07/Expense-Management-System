@@ -79,7 +79,7 @@
         }
 
         .auto-style1 {
-            width: 221px;
+            width: 139px;
         }
 
         footer {
@@ -97,6 +97,24 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        .footer {
+            position: static;
+            bottom: 0;
+            width: 100%;
+        }
+
+
+
+        .footer a {
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #3498db;
+        }
     </style>
 </head>
 <body>
@@ -107,13 +125,13 @@
                 <tr>
                     <td class="auto-style1" style="font-family: 'Century Gothic'; font-size: large;">Email:</td>
                     <td>
-                        <asp:TextBox ID="txtUsername" runat="server" placeholder="Enter Email" TextMode="Email" Width="191px"></asp:TextBox>
+                        <asp:TextBox ID="txtUsername" runat="server" placeholder="Enter Email" TextMode="Email" Width="175px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style1" style="font-family: 'Century Gothic'; font-size: large;">Password:</td>
                     <td>
-                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Enter password" TextMode="Password" Width="191px"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Enter password" TextMode="Password" Width="175px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -128,6 +146,17 @@
     <footer>
     <u><a href="User_Login.aspx"><h4 style="color: #000000">Back</h4></a></u>    
 
+            <footer class="footer bg-dark text-light text-center py-3">
+    <div class="container">
+        <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
+        <div>
+            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
     </footer>
 </body>
 </html>

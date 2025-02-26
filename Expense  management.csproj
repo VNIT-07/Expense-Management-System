@@ -91,6 +91,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Expense_Calculator.aspx" />
+    <Content Include="form.html" />
     <Content Include="Global.asax" />
     <Content Include="login.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
