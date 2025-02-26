@@ -21,9 +21,10 @@
     padding: 10px 20px;
 }
 
-/* Prevent content from hiding behind navbar */
 body {
     padding-top: 56px;
+    background: url('img/BG.jpeg') no-repeat center center fixed;
+    background-size: cover;
 }
 
     .footer {
@@ -43,10 +44,9 @@ body {
     }
 
 </style>
-<body class="bg-light">
+<body class="bg-light" ">
     <form id="form1" runat="server">
         
-        <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">Expenses.web</a>
@@ -67,7 +67,6 @@ body {
             </div>
         </nav>
 
-        <!-- Login Form -->
         <div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
          <div class="card p-4 shadow-sm text-center" style="max-width: 400px; width: 100%;">
             <div class="d-flex justify-content-center">
@@ -109,7 +108,6 @@ body {
         </div>
     </div>
 </footer>
-    <!-- Bootstrap JS (For interactive components like Navbar, Modals, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
