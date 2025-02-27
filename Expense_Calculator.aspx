@@ -11,17 +11,16 @@
 </head>
      <style>
 
-
-          .navbar {
+         .navbar {
                 position: fixed;
                 top: 0;
                 width: 100%;
                 z-index: 1000; 
-            }
+         }
 
-            body {
-                padding-top: 56px; 
-            }
+        body {
+            padding-top: 56px; 
+        }
         .expense-form {
             width: 100%;
             max-width: 450px;
@@ -71,53 +70,53 @@
             }
         }
         .profile-icon img {
-    border-radius: 50%; 
-    width: 36px;
-    height: 36px;
-}
+            border-radius: 50%; 
+            width: 36px;
+            height: 36px;
+        }
 
-.logout-icon img {
-    border-radius: 50%; 
-    width: 36px;
-    height: 36px;
-}
+        .logout-icon img {
+            border-radius: 50%; 
+            width: 36px;
+            height: 36px;
+        }
 
-.footer {
-    position: static;
-    bottom: 0;
-    width: 100%;
-}
+        .footer {
+            position: static;
+            bottom: 0;
+            width: 100%;
+        }
 
-.footer a {
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
+        .footer a {
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
 
-.footer a:hover {
-    color: #3498db;
-}
-
-
-
+        .footer a:hover {
+            color: #3498db;
+        }
     </style>
-    <!-- From Uiverse.io by elijahgummer --> 
 
 <body class="bg-light">
     <form id="form2">
         
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Expenses.web</a>
+        <a class="navbar-brand" href="User_dashboard.aspx">Expenses.web</a>
 
         <div class="d-flex align-items-center">
-            <a href="/Profile" class="profile-icon me-3">
-                <img src="/images/profile.png" alt="Profile">
+            <!--<a href="/Profile" class="profile-icon me-3">
+                <img src="img/profile.png" alt="Profile">
             </a>
 
             <a href="/Logout" class="logout-icon">
-                <img src="/images/Logout.png">
-            </a>
+                <img src="img/Logout.png">
+            </a>-->
+             <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="ViewExpenses.aspx"><i class="bi bi-list"></i> View Expenses</a></li>
+               <li class="nav-item"><a class="nav-link" href="Reports.aspx"><i class="bi bi-bar-chart"></i> Reports</a></li
+                 </ul>
         </div>
     </div>
 </nav>
@@ -169,10 +168,9 @@
         
 
     </form>
-
-                <footer class="footer bg-dark text-light text-center py-3">
-    <div class="container">
-        <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
+        <footer class="footer bg-dark text-light text-center py-3">
+            <div class="container">
+                <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
         <div>
             <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
             <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>

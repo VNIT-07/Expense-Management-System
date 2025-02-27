@@ -27,6 +27,8 @@ body {
     background-size: cover;
 }
 
+
+
     .footer {
         position: static;
         bottom: 0;

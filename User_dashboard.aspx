@@ -18,11 +18,13 @@
             z-index: 1000;
             background-color: #001a66;
             padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Prevent content from hiding behind navbar */
         body {
-            padding-top: 56px;
+            padding-top: 70px;
+            background-color: #f8f9fa;
         }
 
         /* Navbar Branding */
@@ -89,28 +91,52 @@
                     <img src="/images/profile.png" alt="Profile" class="nav-icon">
                 </a>
 
-                <!-- Logout Icon -->
-                <a href="/Logout" class="logout-icon">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <img src="/images/Logout.png">
-                </a>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-cash-stack display-4 text-primary"></i>
+                            <h4>Total Expenses</h4>
+                            <p>$2,450</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-wallet2 display-4 text-success"></i>
+                            <h4>Available Balance</h4>
+                            <p>$5,320</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-graph-up display-4 text-danger"></i>
+                            <h4>Monthly Spending</h4>
+                            <p>$1,200</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
 
-        <footer class="footer bg-dark text-light text-center py-3">
+        <footer class="footer">
     <div class="container">
         <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
         <div>
-            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>
 </footer>
-    <!-- Bootstrap Icons Script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

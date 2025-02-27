@@ -8,12 +8,34 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-</head>
+    
     <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #001a66;
+            padding: 10px 20px;
+        }
+
+        body {
+            padding-top: 56px;
+            background: url('img/Regist.JPG') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .card {
+           /* background: rgba(255, 255, 255, 0.8);  White with 80% opacity */
+            opacity: 0.9; /* Adjust transparency */
+            border-radius: 15px; /* Smooth rounded corners */
+        }
+
         .footer {
             position: static;
             bottom: 0;
             width: 100%;
+
         }
 
         .footer a {
@@ -25,8 +47,8 @@
         .footer a:hover {
             color: #3498db;
         }
-
     </style>
+</head>
 <body class="bg-light">
     <form id="form1" runat="server">
         
@@ -45,8 +67,11 @@
 
         <!-- Registration Form -->
         <div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
-            <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
-                <h2 class="text-center mb-4">User Registration</h2>
+            <div class="card p-4 shadow-sm text-center" style="max-width: 400px; width: 100%;">
+                <div class="d-flex justify-content-center">
+                    <img src="img/UserIcon1.jpeg" alt="User Icon" style="width: 80px; height: 80px;">
+                </div>
+                <h2 class="text-center mb-4"><h4>User Registration</h4></h2>
                 
                 <div class="mb-3">
                     <asp:TextBox ID="txtFname" runat="server" CssClass="form-control" placeholder="First Name"></asp:TextBox>
@@ -64,7 +89,6 @@
                 <div class="mb-3">
                     <asp:TextBox ID="txtCpassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Confirm Password"></asp:TextBox>
                 </div>
-                <!-- Country Dropdown -->
                 <div class="mb-3">
                     <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-select">
                         <asp:ListItem Text="Select Country" Value="" />
@@ -86,16 +110,16 @@
     </form>
 
     <footer class="footer bg-dark text-light text-center py-3">
-    <div class="container">
-        <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
-        <div>
-            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+        <div class="container">
+            <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
+            <div>
+                <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
