@@ -128,7 +128,7 @@
             <h2>Expense Tracker</h2>
             
             <div class="mb-3">
-                <label class="form-label">Name (Expense)</label>
+                <label class="form-label">Title (Expense)</label>
                 <asp:TextBox ID="txtExpensName" runat="server" CssClass="form-control" placeholder="Enter expense name"></asp:TextBox>
             </div>
 
