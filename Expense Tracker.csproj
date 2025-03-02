@@ -93,11 +93,8 @@
     <Content Include="Expense_Calculator.aspx" />
     <Content Include="form.html" />
     <Content Include="Global.asax" />
-    <Content Include="img\Regist.JPG" />
-    <Content Include="img\RegistBG.jpg" />
-    <Content Include="img\BG.jpeg" />
-    <Content Include="img\UserIcon1.jpeg" />
-    <Content Include="login.png" />
+    <Content Include="img\UserLoginBG.jpeg" />
+    <Content Include="img\UserIcon.jpeg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -190,6 +187,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
