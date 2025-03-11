@@ -29,7 +29,7 @@ namespace F1
             }
 
 
-            using (SqlConnection conn = new SqlConnection(strconn))
+                using (SqlConnection conn = new SqlConnection(strconn))
                 {
 
                     conn.Open();
@@ -40,15 +40,39 @@ namespace F1
                     cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
                     int result = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    if (result > 0)
+                    //if (result != 0)
+                    //{
+                    //    Response.Redirect("User_dashboard.aspx");
+                    //}
+                    //else
+                    //{
+                    //    Response.Write("<script>alert('Invalid login credentials!');</script>");
+                    //}
+
+
+                object userId = cmd.ExecuteScalar();
+
+                if (userId != null) // Valid User
+                {
+                    Session["U_id"] = userId;
+
+                    // Redirect to return URL or home page
+                    if (Request.QueryString["returnUrl"] != null && Request.QueryString["productId"] != null)
                     {
-                        Response.Redirect("User_dashboard.aspx");
+                        int productId = Convert.ToInt32(Request.QueryString["productId"]);
+                        Response.Redirect("AddToCartHandler.aspx?productId=" + productId);
                     }
                     else
                     {
-                        Response.Write("<script>alert('Invalid login credentials!');</script>");
+                        Response.Redirect("Home.aspx");
                     }
                 }
+                else
+                {
+                    Response.Write("<script>alert('Invalid login');</script>");
+                }
+
+            }
         }
     }
 }

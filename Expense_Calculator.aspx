@@ -114,7 +114,7 @@
                 <img src="img/Logout.png">
             </a>-->
              <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link" href="ViewExpenses.aspx"><i class="bi bi-list"></i> View Expenses</a></li>
+              <li class="nav-item"><a class="nav-link" href="ViewExpense.aspx"><i class="bi bi-list"></i> View Expenses</a></li>
                <li class="nav-item"><a class="nav-link" href="Reports.aspx"><i class="bi bi-bar-chart"></i> Reports</a></li
                  </ul>
         </div>

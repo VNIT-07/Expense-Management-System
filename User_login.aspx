@@ -76,15 +76,15 @@ body {
                 <h2 class="text-center mb-4"><h4>User Login</h4></h2>
                 
                 <div class="mb-3">
-                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username"></asp:TextBox>
+                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
                 <div class="mb-3">
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Email / Registration Number"></asp:TextBox>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Email / Registration Number" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
                 <div class="mb-3">
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Password"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Password" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
                 <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" Text="Login" OnClick="btnLogin_Click" />

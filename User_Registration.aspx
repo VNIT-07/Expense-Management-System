@@ -21,7 +21,7 @@
 
         body {
             padding-top: 56px;
-            background: url('img/Regist.JPG') no-repeat center center fixed;
+            background: url('img/UserLoginBG.jpeg') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -69,7 +69,7 @@
         <div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
             <div class="card p-4 shadow-sm text-center" style="max-width: 400px; width: 100%;">
                 <div class="d-flex justify-content-center">
-                    <img src="img/UserIcon1.jpeg" alt="User Icon" style="width: 80px; height: 80px;">
+                    <img src="img/UserIcon.jpeg" alt="User Icon" style="width: 80px; height: 80px;">
                 </div>
                 <h2 class="text-center mb-4"><h4>User Registration</h4></h2>
                 

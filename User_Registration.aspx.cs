@@ -43,10 +43,17 @@ namespace F1
             cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
             cmd.Parameters.AddWithValue("@country", ddlCountry.SelectedValue);
             conn.Open();
-            cmd.ExecuteNonQuery();
+            int log = Convert.ToInt16(cmd.ExecuteNonQuery());
+            if (log != 0)
+            {
+                Response.Write("<script>alert('Registration successful!');</script>");
+                Response.Redirect("User_dashboard.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('Registration failed!');</script>");
+            }
             conn.Close();
-            Response.Write("<script>alert('Registration successful!');</script>");
-            Response.Redirect("User_dashboard.aspx");
         }
 
     }
