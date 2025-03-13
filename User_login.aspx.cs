@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Windows.Forms;
 using System.Configuration;
-using System.Data;
 
 namespace F1
 {
@@ -17,63 +10,44 @@ namespace F1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "" || txtEmail.Text == "" || txtPassword.Text == "")
+            if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                Response.Write("<script>alert('Missing information');</script>");
+                Response.Write("<script>alert('Please enter Email and Password.');</script>");
                 return;
             }
 
+            string qry = "SELECT U_id FROM User_Registration WHERE Email = @Email AND Password = @Password";
 
-                using (SqlConnection conn = new SqlConnection(strconn))
-                {
+            using (SqlConnection conn = new SqlConnection(strconn))
+            {
+                SqlCommand cmd = new SqlCommand(qry, conn);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
 
-                    conn.Open();
-                    string qry = "SELECT COUNT(*) FROM User_Registration WHERE email=@Email AND password=@Password";
-
-                    SqlCommand cmd = new SqlCommand(qry, conn);
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-                    int result = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    //if (result != 0)
-                    //{
-                    //    Response.Redirect("User_dashboard.aspx");
-                    //}
-                    //else
-                    //{
-                    //    Response.Write("<script>alert('Invalid login credentials!');</script>");
-                    //}
-
-
+                conn.Open();
                 object userId = cmd.ExecuteScalar();
+                conn.Close();
 
-                if (userId != null) // Valid User
+                if (userId != null && userId != DBNull.Value)
                 {
-                    Session["U_id"] = userId;
+                    // Store user ID in session
+                    Session["U_id"] = Convert.ToInt32(userId);
+                    Session["isLogin"] = true;
 
-                    // Redirect to return URL or home page
-                    if (Request.QueryString["returnUrl"] != null && Request.QueryString["productId"] != null)
-                    {
-                        int productId = Convert.ToInt32(Request.QueryString["productId"]);
-                        Response.Redirect("AddToCartHandler.aspx?productId=" + productId);
-                    }
-                    else
-                    {
-                        Response.Redirect("Home.aspx");
-                    }
+                    // Debugging Alert: Check if session is set before redirecting
+                    Response.Write("<script>alert('Login Successful! User ID: " + userId + "');</script>");
+                    Response.Redirect("User_dashboard.aspx", false); // Use false to prevent thread abort
+                    Context.ApplicationInstance.CompleteRequest(); // Ensure proper redirection
                 }
                 else
                 {
-                    Response.Write("<script>alert('Invalid login');</script>");
+                    Response.Write("<script>alert('Invalid email or password.');</script>");
                 }
-
             }
         }
     }
 }
-    

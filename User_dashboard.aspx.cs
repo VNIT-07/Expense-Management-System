@@ -1,62 +1,73 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
 namespace a
 {
-    
     public partial class User_dashboard : System.Web.UI.Page
     {
-        SqlConnection con;
         string strcon = ConfigurationManager.ConnectionStrings["connection2"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["U_id"] == null || Session["isLogin"] == null || !(bool)Session["isLogin"])
             {
-                if (Session["Username"] != null)
-                {
-                    lblUserName.Text = Session["Username"].ToString();
-                    LoadUserData(Session["Username"].ToString());
-                }
-                else
-                {
-                    Response.Redirect("User_Login.aspx"); // Redirect if session is null
-                }
+                Response.Redirect("User_Login.aspx");
+            }
+            else
+            {
+                int userId = Convert.ToInt32(Session["U_id"]);
+                LoadUserDetails(userId);
+                LoadExpenseDetails(userId);
             }
         }
 
-        private void LoadUserData(string username)
+        private void LoadUserDetails(int userId)
         {
-            try
+            string query = "SELECT U_name, Balance FROM User_Registration WHERE U_id = @U_id";
+
+            using (SqlConnection conn = new SqlConnection(strcon))
             {
-                using (con = new SqlConnection(strcon))
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@U_id", userId);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
-                    con.Open();
-                    string query = "SELECT SUM(ExpenseAmount) AS TotalExpense, (SELECT Balance FROM Users WHERE Username = @Username) AS Balance FROM Expenses WHERE Username = @Username";
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@Username", username);
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            lblTotalExpense.Text = reader["TotalExpense"] != DBNull.Value ? reader["TotalExpense"].ToString() : "0";
-                            lblAvailableBalance.Text = reader["Balance"] != DBNull.Value ? reader["Balance"].ToString() : "0";
-                        }
-                        reader.Close();
-                    }
+                    lblUserName.Text = reader["U_name"].ToString();
+                    lblAvailableBalance.Text = "$" + Convert.ToDecimal(reader["Balance"]).ToString("N2");
                 }
+                conn.Close();
             }
-            catch (Exception ex)
+        }
+
+        private void LoadExpenseDetails(int userId)
+        {
+            string query = @"
+                SELECT 
+                    ISNULL(SUM(ExpenseAmount), 0) AS TotalExpense,
+                    ISNULL(SUM(CASE WHEN MONTH(ExpenseDate) = MONTH(GETDATE()) THEN ExpenseAmount ELSE 0 END), 0) AS MonthlySpending
+                FROM Expenses
+                WHERE U_id = @U_id;
+";
+
+            using (SqlConnection conn = new SqlConnection(strcon))
             {
-                lblTotalExpense.Text = "Error";
-                lblAvailableBalance.Text = "Error";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@U_id", userId);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    lblTotalExpense.Text = "$" + Convert.ToDecimal(reader["TotalExpense"]).ToString("N2");
+                    lblMonthlySpending.Text = "$" + Convert.ToDecimal(reader["MonthlySpending"]).ToString("N2");
+                }
+                conn.Close();
             }
         }
     }

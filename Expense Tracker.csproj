@@ -104,7 +104,6 @@
     <Content Include="User_dashboard.aspx" />
     <Content Include="User_login.aspx" />
     <Content Include="User_Registration.aspx" />
-    <Content Include="ViewExpense.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -153,13 +152,6 @@
     </Compile>
     <Compile Include="User_Registration.aspx.designer.cs">
       <DependentUpon>User_Registration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewExpense.aspx.cs">
-      <DependentUpon>ViewExpense.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewExpense.aspx.designer.cs">
-      <DependentUpon>ViewExpense.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

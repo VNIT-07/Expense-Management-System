@@ -75,9 +75,7 @@ body {
 
                 <h2 class="text-center mb-4"><h4>User Login</h4></h2>
                 
-                <div class="mb-3">
-                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
+                
 
                 <div class="mb-3">
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Email / Registration Number" AutoCompleteType="Disabled"></asp:TextBox>

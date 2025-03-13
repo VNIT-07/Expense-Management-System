@@ -20,7 +20,8 @@
         }
 
         body {
-            padding-top: 70px;
+            margin: 0;
+            padding: 0;
             background-color: #f8f9fa;
         }
 
@@ -53,7 +54,7 @@
         <!-- ✅ Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="Dashboard.aspx"><h3>Expense.web</h3></a>
+                <a class="navbar-brand" href="User_dashboard.aspx"><h3>Expense.web</h3></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
