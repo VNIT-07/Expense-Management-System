@@ -103,8 +103,10 @@
     <Content Include="terms_condition.html" />
     <Content Include="User_dashboard.aspx" />
     <Content Include="User_login.aspx" />
+    <Content Include="User_profile.aspx" />
     <Content Include="User_Registration.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Welcome.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin_dashboard.aspx.cs">
@@ -145,6 +147,13 @@
     </Compile>
     <Compile Include="User_login.aspx.designer.cs">
       <DependentUpon>User_login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User_profile.aspx.cs">
+      <DependentUpon>User_profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_profile.aspx.designer.cs">
+      <DependentUpon>User_profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="User_Registration.aspx.cs">
       <DependentUpon>User_Registration.aspx</DependentUpon>

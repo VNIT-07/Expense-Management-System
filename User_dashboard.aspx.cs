@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace a
+namespace Expense_Tracker
 {
     public partial class User_dashboard : System.Web.UI.Page
     {
@@ -11,64 +11,120 @@ namespace a
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["U_id"] == null || Session["isLogin"] == null || !(bool)Session["isLogin"])
+            if (!IsPostBack)
             {
-                Response.Redirect("User_Login.aspx");
+                if (Session["U_id"] != null && Session["Username"] != null)
+                {
+                    lblUserName.Text = "Welcome, " + Session["Username"].ToString();
+                    LoadUserData(Session["U_id"].ToString());
+                }
+                else
+                {
+                    Response.Write("<script>alert('Session expired! Redirecting to login...');</script>");
+                    Response.Redirect("User_Login.aspx", true);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+            }
+        }
+
+        private void LoadUserData(string userId)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(strcon))
+                {
+                    con.Open();
+                    string query = @"
+                SELECT 
+                    (SELECT ISNULL(SUM(ExpenseAmount), 0) FROM Expenses WHERE U_id = @UserId) AS TotalExpense,
+                    (SELECT Balance FROM User_Registration WHERE U_id = @UserId) AS Balance,
+                    (SELECT ISNULL(SUM(ExpenseAmount), 0) FROM Expenses WHERE U_id = @UserId 
+                     AND MONTH(ExpenseDate) = MONTH(GETDATE())) AS MonthlySpending";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            lblTotalExpense.Text = reader["TotalExpense"].ToString();
+                            lblAvailableBalance.Text = reader["Balance"] != DBNull.Value ? reader["Balance"].ToString() : "0";
+                            lblMonthlySpending.Text = reader["MonthlySpending"].ToString();
+                        }
+                        reader.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblTotalExpense.Text = "Error!";
+                lblAvailableBalance.Text = "Error!";
+                lblMonthlySpending.Text = "Error!";
+            }
+        }
+
+
+        protected void btnAddExpense_Click(object sender, EventArgs e)
+        {
+            int userID = Convert.ToInt32(Session["U_id"]);
+            decimal expenseAmount = Convert.ToDecimal(txtExpenseAmount.Text);
+
+            decimal userBalance = GetUserBalance(userID);
+
+            if (userBalance >= expenseAmount)
+            {
+                string updateBalanceQuery = "UPDATE User_Registration SET Balance = Balance - @ExpenseAmount WHERE U_id = @UserID";
+                string insertExpenseQuery = "INSERT INTO Expenses (U_id, ExpenseAmount) VALUES (@UserID, @ExpenseAmount)";
+
+                using (SqlConnection con = new SqlConnection(strcon))
+                {
+                    con.Open();
+                    SqlTransaction transaction = con.BeginTransaction();
+
+                    try
+                    {
+                        SqlCommand cmd1 = new SqlCommand(updateBalanceQuery, con, transaction);
+                        cmd1.Parameters.AddWithValue("@ExpenseAmount", expenseAmount);
+                        cmd1.Parameters.AddWithValue("@UserID", userID);
+                        cmd1.ExecuteNonQuery();
+
+                        SqlCommand cmd2 = new SqlCommand(insertExpenseQuery, con, transaction);
+                        cmd2.Parameters.AddWithValue("@UserID", userID);
+                        cmd2.Parameters.AddWithValue("@ExpenseAmount", expenseAmount);
+                        cmd2.ExecuteNonQuery();
+
+                        transaction.Commit();
+                        Response.Redirect("User_dashboard.aspx");
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        Response.Write("Something went wrong!");
+                    }
+                }
             }
             else
             {
-                int userId = Convert.ToInt32(Session["U_id"]);
-                LoadUserDetails(userId);
-                LoadExpenseDetails(userId);
+                lblMessage.Text = "Insufficient Balance!";
             }
         }
 
-        private void LoadUserDetails(int userId)
+        private decimal GetUserBalance(int userID)
         {
-            string query = "SELECT U_name, Balance FROM User_Registration WHERE U_id = @U_id";
-
-            using (SqlConnection conn = new SqlConnection(strcon))
+            using (SqlConnection con = new SqlConnection(strcon))
             {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@U_id", userId);
+                con.Open();
+                string query = "SELECT Balance FROM User_Registration WHERE U_id = @UserID";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@UserID", userID);
 
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    lblUserName.Text = reader["U_name"].ToString();
-                    lblAvailableBalance.Text = "$" + Convert.ToDecimal(reader["Balance"]).ToString("N2");
-                }
-                conn.Close();
-            }
-        }
-
-        private void LoadExpenseDetails(int userId)
-        {
-            string query = @"
-                SELECT 
-                    ISNULL(SUM(ExpenseAmount), 0) AS TotalExpense,
-                    ISNULL(SUM(CASE WHEN MONTH(ExpenseDate) = MONTH(GETDATE()) THEN ExpenseAmount ELSE 0 END), 0) AS MonthlySpending
-                FROM Expenses
-                WHERE U_id = @U_id;
-";
-
-            using (SqlConnection conn = new SqlConnection(strcon))
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@U_id", userId);
-
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    lblTotalExpense.Text = "$" + Convert.ToDecimal(reader["TotalExpense"]).ToString("N2");
-                    lblMonthlySpending.Text = "$" + Convert.ToDecimal(reader["MonthlySpending"]).ToString("N2");
-                }
-                conn.Close();
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToDecimal(result) : 0;
             }
         }
     }
 }
+
+
+

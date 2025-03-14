@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Tameion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        /* 🎮 Background Image */
+        body {
+            font-family: 'Press Start 2P', cursive; /* Pixel Font */
+            background: black;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* 🎆 Header */
+        .header {
+            font-size: 3rem;
+            text-shadow: 4px 4px #0f3460;
+            border: 6px solid white;
+            padding: 20px;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 8px 8px #0f3460;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 🎨 Section Styles */
+        .section {
+            padding: 50px 20px;
+            border: 4px solid white;
+            margin: 40px 20px;
+            background: rgba(22, 33, 62, 0.9);
+            box-shadow: 8px 8px #0f3460;
+        }
+
+        /* 🖼️ Images */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-style {
+            width: 200px;
+            filter: contrast(200%) saturate(200%) brightness(90%);
+            image-rendering: pixelated;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .image-style:hover {
+                transform: translateY(-5px);
+                box-shadow: 4px 4px white;
+            }
+
+        /* 🕹️ Buttons */
+        .btn-animated {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            color: white;
+            text-decoration: none;
+            background: #3B82F6;
+            border: 4px solid white;
+            box-shadow: 4px 4px white;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .btn-animated:hover {
+                background: white;
+                color: #3B82F6;
+                box-shadow: 4px 4px #3B82F6;
+            }
+
+        /* 🌟 Smooth Scroll Effects */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        /* 🎵 Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 4px 4px white;
+        }
+
+            .music-player audio {
+                width: 200px;
+            }
+    </style>
+</head>
+<body>
+    <!-- 🎮 8-Bit Music -->
+    <div class="music-player">
+        <audio id="bg-music" autoplay loop muted>
+            <source src="Mario.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+    </div>
+
+    <div class="hero">
+        <h1 class="header fade-in">Welcome to <span style="color:#3B82F6;">Tameion</span></h1>
+    </div>
+
+    <!-- 🚀 Introduction Section -->
+    <section class="section fade-in">
+        <h2>Take Full Control of Your Expenses</h2>
+        <p>Dark Mode | Google/iCloud Sign-in | Data Analysis | Unlimited CSV Downloads | User-Friendly YouTube Tutorials</p>
+        <a href="User_Registration.aspx" class="btn-animated">Register</a>
+        <a href="User_Login.aspx" class="btn-animated">Login</a>
+    </section>
+
+    <!-- 📊 Features Section -->
+    <section class="section fade-in">
+        <h2>Our Features</h2>
+        <p>Manage your expenses with efficiency and security. Enjoy seamless tracking and data-driven insights.</p>
+        <div class="image-container">
+            <img src="images/1.jpg" alt="Feature 1" class="image-style">
+            <img src="images/2.jpg" alt="Feature 2" class="image-style">
+            <img src="images/3.jpg" alt="Feature 3" class="image-style">
+        </div>
+    </section>
+
+    <!-- 📈 Financial Planning Section -->
+    <section class="section fade-in">
+        <h2>Smart Financial Planning</h2>
+        <p>With AI-powered analytics, you can track spending patterns and receive tailored suggestions.</p>
+    </section>
+
+    <!-- 🤝 Our Partners Section -->
+    <section class="section fade-in">
+        <h2>Our Partners</h2>
+        <p>Vanit Patel | Vinit Pansuriya | Harsh Patel | Utsav Gorasiya</p>
+    </section>
+
+    <!-- ⚖️ Footer -->
+    <footer class="section fade-in">
+        <p>&copy; 2025 Tameion. All Rights Reserved.</p>
+        <p><a href="terms_of_service.html">Terms of Service</a> | <a href="privacy_policy.html">Privacy Policy</a></p>
+    </footer>
+
+    <!-- 🌟 JavaScript for Smooth Scroll Effects -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fadeInElements = document.querySelectorAll(".fade-in");
+
+            function checkScroll() {
+                fadeInElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.9) {
+                        el.classList.add("visible");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", checkScroll);
+            checkScroll(); // Run on load
+        });
+
+        window.addEventListener("click", function () {
+            let audio = document.getElementById("bg-music");
+            audio.muted = false;
+            audio.play();
+        });
+    </script>
+</body>
+</html>

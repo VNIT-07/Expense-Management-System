@@ -1,111 +1,143 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User_Login.aspx.cs" Inherits="F1.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User_login.aspx.cs" Inherits="Expense_Tracker.User_Login" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Expense Management System - Login</title>
-    
+    <title>User Login - Expense Tracker</title>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons (Optional) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-</head>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
-    .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: #001a66;
-    padding: 10px 20px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            background: black;
+        }
 
-body {
-    padding-top: 56px;
-    background: url('img/UserLoginBG.jpeg') no-repeat center center fixed;
-    background-size: cover;
-}
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: black;
+            color: white;
+            text-align: center;
+        }
 
-    .footer {
-        position: static;
-        bottom: 0;
-        width: 100%;
-    }
+        .login-container {
+            width: 400px;
+            padding: 40px;
+            margin: 80px auto;
+            border: 4px solid #3B82F6; /* Neon Blue */
+            background: black;
+            box-shadow: 8px 8px #3B82F6;
+            border-radius: 12px;
+        }
 
-    .footer a {
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s ease;
-    }
+        .login-container h2 {
+            color: #3B82F6; /* Neon Blue */
+            margin-bottom: 25px;
+        }
 
-    .footer a:hover {
-        color: #3498db;
-    }
+        .input-field {
+            width: 100%;
+            padding: 18px;
+            margin: 12px 0;
+            background: #1E1E1E; /* Dark Grey */
+            border: 3px solid #3B82F6; /* Neon Blue */
+            color: white;
+            text-align: center;
+            font-size: 1.1rem;
+            border-radius: 8px;
+        }
 
-</style>
-<body class="bg-light" ">
-    <form id="form1" runat="server">
-        
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">Expenses.web</a>
-                <div class="ms-auto">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="User_Registration.aspx">
-                                <i class="bi bi-pencil-square"></i> User Registration
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Admin_login.aspx">
-                                <i class="bi bi-lock"></i> Admin Login
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        .forgot-password {
+            font-size: 0.9rem;
+            color: #C7B7E7; /* Soft Purple */
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
 
-        <div class="container d-flex justify-content-center align-items-center" style="height: 90vh;">
-         <div class="card p-4 shadow-sm text-center" style="max-width: 400px; width: 100%;">
-            <div class="d-flex justify-content-center">
-                        <img src="img/UserIcon.jpeg" alt="User Icon" style="width: 80px; height: 80px;">
-                    </div>
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
 
-                <h2 class="text-center mb-4"><h4>User Login</h4></h2>
-                
-                
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.2rem;
+            color: black;
+            background: #3B82F6; /* Neon Blue */
+            border: 3px solid #3B82F6;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border-radius: 8px;
+        }
 
-                <div class="mb-3">
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Email / Registration Number" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
+        .login-btn:hover {
+            background: black;
+            color: #3B82F6;
+        }
 
-                <div class="mb-3">
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Password" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
+        .large-header {
+            font-size: 2.8rem;
+            text-shadow: 4px 4px #3B82F6; /* Neon Blue Shadow */
+            margin: 40px 0;
+        }
 
-                <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" Text="Login" OnClick="btnLogin_Click" />
+        .footer {
+            padding: 20px;
+            border-top: 4px solid white;
+            background: rgba(22, 33, 62, 0.85);
+            box-shadow: 8px 8px #3B82F6;
+            margin-top: 60px;
+            border-radius: 8px;
+        }
 
-                <div class="text-center mt-3">
-                    <a href="forgot_password.aspx" class="text-decoration-none">Forgot password?</a>
-                </div>
-            </div>
-        </div>
+        .footer a {
+            color: #3B82F6;
+            text-decoration: none;
+        }
 
-    </form>
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
 
-        <footer class="footer bg-dark text-light text-center py-3">
-    <div class="container">
-        <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
-        <div>
-            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
-        </div>
+    <!-- Large Header -->
+    <h1 class="large-header">Welcome Back</h1>
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2>USER LOGIN</h2>
+
+        <form id="form1" runat="server">
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="input-field" TextMode="Email" placeholder="Email"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" runat="server" CssClass="input-field" TextMode="Password" placeholder="Password"></asp:TextBox>
+
+            <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+
+            <a href="Forgot_Password.aspx" class="forgot-password">Forgot Password?</a>
+
+            <br>
+
+            <asp:Button ID="btnLogin" runat="server" CssClass="login-btn" Text="LOGIN" OnClick="btnLogin_Click" />
+        </form>
     </div>
-</footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Expense Tracker. All Rights Reserved.</p>
+        <p><a href="terms_of_service.html">Terms of Service</a> | <a href="privacy_policy.html">Privacy Policy</a></p>
+    </footer>
+
 </body>
 </html>

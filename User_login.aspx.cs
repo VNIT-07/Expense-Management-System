@@ -1,52 +1,56 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace F1
+namespace Expense_Tracker
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class User_Login : System.Web.UI.Page
     {
-        string strconn = ConfigurationManager.ConnectionStrings["connection2"].ConnectionString;
+        string strcon = ConfigurationManager.ConnectionStrings["connection2"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                lblError.Text = "";
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+            try
             {
-                Response.Write("<script>alert('Please enter Email and Password.');</script>");
-                return;
+                using (SqlConnection con = new SqlConnection(strcon))
+                {
+                    con.Open();
+                    string query = "SELECT U_id, U_name, Password FROM User_Registration WHERE Email = @Email AND Password = @Password";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read()) // ✅ User Found
+                        {
+                            Session["U_id"] = reader["U_id"].ToString();
+                            Session["Username"] = reader["U_name"].ToString();
+                            reader.Close();
+                            Response.Redirect("User_dashboard.aspx"); // ✅ Redirect to Dashboard
+                        }
+                        else
+                        {
+                            lblError.Text = "❌ No user found! Check Email and Password.";
+                        }
+
+                        reader.Close();
+                    }
+                }
             }
-
-            string qry = "SELECT U_id FROM User_Registration WHERE Email = @Email AND Password = @Password";
-
-            using (SqlConnection conn = new SqlConnection(strconn))
+            catch (Exception ex)
             {
-                SqlCommand cmd = new SqlCommand(qry, conn);
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
-
-                conn.Open();
-                object userId = cmd.ExecuteScalar();
-                conn.Close();
-
-                if (userId != null && userId != DBNull.Value)
-                {
-                    // Store user ID in session
-                    Session["U_id"] = Convert.ToInt32(userId);
-                    Session["isLogin"] = true;
-
-                    // Debugging Alert: Check if session is set before redirecting
-                    Response.Write("<script>alert('Login Successful! User ID: " + userId + "');</script>");
-                    Response.Redirect("User_dashboard.aspx", false); // Use false to prevent thread abort
-                    Context.ApplicationInstance.CompleteRequest(); // Ensure proper redirection
-                }
-                else
-                {
-                    Response.Write("<script>alert('Invalid email or password.');</script>");
-                }
+                lblError.Text = "⚠️ Database Error: " + ex.Message;
             }
         }
     }

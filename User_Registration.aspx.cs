@@ -1,60 +1,86 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Windows.Forms;
 using System.Configuration;
-using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace F1
+namespace Expense_Tracker
 {
-
     public partial class User_Registration : System.Web.UI.Page
     {
-        string strconn = ConfigurationManager.ConnectionStrings["connection2"].ConnectionString;
-        SqlConnection conn;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                // Page Load Actions
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            
-            if (txtFname.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || txtPassword.Text == "")
-            {
-                Response.Write("<script>alert('Missing information');</script>");
-                return;
-            }
-            if (txtPassword.Text != txtCpassword.Text)
-            {
-                Response.Write("<script>alert('Password and Confirm Password do not match!');</script>");
-                return;
-            }
-            SqlConnection conn = new SqlConnection(strconn);
-            string qry = "INSERT INTO User_Registration (U_name,Contact_number,Email,Password,country) VALUES(@U_name,@Contact_number,@Email,@Password,@country)";
-            SqlCommand cmd = new SqlCommand(qry, conn);
-            cmd.Parameters.AddWithValue("@U_name", txtFname.Text);
-            cmd.Parameters.AddWithValue("@Contact_number", txtContact.Text);
-            cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-            cmd.Parameters.AddWithValue("@country", ddlCountry.SelectedValue);
-            conn.Open();
-            int log = Convert.ToInt16(cmd.ExecuteNonQuery());
-            if (log != 0)
-            {
-                Response.Write("<script>alert('Registration successful!');</script>");
-                Response.Redirect("User_dashboard.aspx");
-            }
-            else
-            {
-                Response.Write("<script>alert('Registration failed!');</script>");
-            }
-            conn.Close();
-        }
+            string fullName = txtFname.Text.Trim();
+            string contactNumber = txtContact.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text.Trim();
+            string confirmPassword = txtCpassword.Text.Trim();
+            string country = ddlCountry.SelectedValue;
+            decimal balance = 0;
 
+            if (!decimal.TryParse(txtBalance.Text.Trim(), out balance))
+            {
+                Response.Write("<script>alert('Invalid Balance Amount!');</script>");
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                Response.Write("<script>alert('Passwords do not match!');</script>");
+                return;
+            }
+
+            string connString = ConfigurationManager.ConnectionStrings["connection2"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                string checkUserQuery = "SELECT COUNT(*) FROM User_Registration WHERE Email=@Email OR Contact_number=@Contact";
+                using (SqlCommand checkCmd = new SqlCommand(checkUserQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@Email", email);
+                    checkCmd.Parameters.AddWithValue("@Contact", contactNumber);
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                    if (count > 0)
+                    {
+                        Response.Write("<script>alert('Email or Contact Number already exists!');</script>");
+                        return;
+                    }
+                }
+
+                string insertQuery = "INSERT INTO User_Registration (U_name, Contact_number, Email, Password, Country, Balance) " +
+                                     "VALUES (@Name, @Contact, @Email, @Password, @Country, @Balance)";
+                using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Name", fullName);
+                    cmd.Parameters.AddWithValue("@Contact", contactNumber);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Country", country);
+                    cmd.Parameters.AddWithValue("@Balance", balance);
+
+                    int result = cmd.ExecuteNonQuery();
+                    if (result > 0)
+                    {
+                        Response.Redirect("User_Login.aspx");
+                        Response.Write("<script>alert('Registration Successful!');</script>");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Registration Failed. Please try again.');</script>");
+                    }
+                }
+            }
+        }
     }
 }
+
+

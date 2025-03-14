@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace a
+namespace Expense_Tracker
 {
 
 

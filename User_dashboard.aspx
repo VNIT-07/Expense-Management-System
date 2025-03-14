@@ -1,67 +1,138 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User_dashboard.aspx.cs" Inherits="a.User_dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User_dashboard.aspx.cs" Inherits="Expense_Tracker.User_dashboard" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>User Dashboard</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    
+    <title>User Dashboard - Expense Tracker</title>
+
+    <!-- ✅ Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+
+    <!-- ✅ Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+
     <style>
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: #001a66; 
-            padding: 10px 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
+            font-family: 'Press Start 2P', cursive;
+            background: url('img/UserDashboardBG.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
         }
 
-        .footer {
-            background-color: #001a66;
+        /* ✅ Navbar */
+        .navbar {
+            background: black !important;
+            border-bottom: 4px solid #3B82F6;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+            color: #3B82F6 !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #3B82F6 !important;
+        }
+
+        /* ✅ Dashboard Panel */
+        .dashboard-container {
+            width: 80%;
+            max-width: 900px;
+            padding: 40px;
+            margin: 50px auto;
+            border: 4px solid white;
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 8px 8px #3B82F6;
             color: white;
-            padding: 15px 0;
+        }
+
+        .dashboard-container h2 {
+            color: #3B82F6;
+            margin-bottom: 25px;
+        }
+
+        /* ✅ Rectangle Container */
+        .stat-container {
+            background: black;
+            padding: 20px;
+            border-radius: 8px;
+            border: 3px solid #3B82F6;
+            box-shadow: 4px 4px #3B82F6;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        /* ✅ Cards Inside Rectangle */
+        .card {
+            background: white !important;
+            border: 2px solid #3B82F6;
+            color: black;
+            padding: 20px;
             text-align: center;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+            font-size: 1rem;
+            box-shadow: 4px 4px #3B82F6;
+            width: 40%;
+            margin: 10px;
+        }
+
+        .card h4 {
+            color: #3B82F6;
+            margin-top: 10px;
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: #3B82F6;
+        }
+
+        /* ✅ Footer */
+        .footer {
+            padding: 20px;
+            border-top: 4px solid white;
+            background: black;
+            box-shadow: 8px 8px #3B82F6;
+            margin-top: 40px;
+            color: white;
         }
 
         .footer a {
-            color: white;
+            color: #3B82F6;
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 18px;
-            transition: 0.3s;
         }
 
         .footer a:hover {
-            color: #3498db; 
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        
+
         <!-- ✅ Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="User_dashboard.aspx"><h3>Expense.web</h3></a>
+                <a class="navbar-brand" href="Dashboard.aspx">Expense.web</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="Expense_Calculator.aspx"><i class="bi bi-plus-circle"></i> Add Expense</a></li>
-                        <li class="nav-item"><a class="nav-link" href="ViewExpense.aspx"><i class="bi bi-list"></i> View Expenses</a></li>
                         <li class="nav-item"><a class="nav-link" href="Reports.aspx"><i class="bi bi-bar-chart"></i> Reports</a></li>
                         <li class="nav-item"><a class="nav-link" href="Settings.aspx"><i class="bi bi-gear"></i> Settings</a></li>
                         <li class="nav-item"><a class="nav-link text-danger" href="User_Login.aspx"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
@@ -70,56 +141,40 @@
             </div>
         </nav>
 
-        <!-- ✅ User Greeting -->
-        <div class="container mt-5">
-            <h2>Hi, <asp:Label ID="lblUserName" runat="server" Text="User"></asp:Label></h2>
+        <!-- ✅ Dashboard Content -->
+        <div class="dashboard-container">
+            <h2> <asp:Label ID="lblUserName" runat="server" Text="User"></asp:Label></h2>
 
-            <!-- ✅ Expense Cards -->
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-cash-stack display-4 text-primary"></i>
-                            <h4>Total Expenses</h4>
-                            <p><asp:Label ID="lblTotalExpense" runat="server" Text="0"></asp:Label></p>
-                        </div>
-                    </div>
+            <!-- ✅ Rectangle Box for Total Expenses & Available Balance -->
+            <div class="stat-container">
+                <div class="card">
+                    <i class="bi bi-cash-stack"></i>
+                    <h4>Total Expenses</h4>
+                    <p><asp:Label ID="lblTotalExpense" runat="server" Text="0"></asp:Label></p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-wallet2 display-4 text-success"></i>
-                            <h4>Available Balance</h4>
-                            <p><asp:Label ID="lblAvailableBalance" runat="server" Text="0"></asp:Label></p>
-                        </div>
-                    </div>
+                <div class="card">
+                    <i class="bi bi-wallet2"></i>
+                    <h4>Available Balance</h4>
+                    <p><asp:Label ID="lblAvailableBalance" runat="server" Text="0"></asp:Label></p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-graph-up display-4 text-danger"></i>
-                            <h4>Monthly Spending</h4>
-                            <p><asp:Label ID="lblMonthlySpending" runat="server" Text="0"></asp:Label></p>
-                        </div>
-                    </div>
+                    <div class="card">
+                    <i class="bi bi-calendar2-check"></i>
+                    <h4>Monthly Spending</h4>
+                    <p><asp:Label ID="lblMonthlySpending" runat="server" Text="0"></asp:Label></p>
                 </div>
             </div>
         </div>
 
         <!-- ✅ Footer -->
         <footer class="footer">
-            <div class="container">
-                <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
-                <div>
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                    <a href="#"><i class="bi bi-twitter"></i></a>
-                    <a href="#"><i class="bi bi-instagram"></i></a>
-                    <a href="#"><i class="bi bi-linkedin"></i></a>
-                </div>
-            </div>
+            <p>&copy; 2025 Expense Tracker. All Rights Reserved.</p>
+            <p><a href="terms_of_service.html">Terms of Service</a> | <a href="privacy_policy.html">Privacy Policy</a></p>
         </footer>
 
+        <!-- ✅ Bootstrap Script -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </form>
 </body>
 </html>
+
+        <!-- my code -->
