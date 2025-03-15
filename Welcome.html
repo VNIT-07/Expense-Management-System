@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿Welcome.html:
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,9 +17,8 @@
             scroll-behavior: smooth;
         }
 
-        /* 🎮 Background Image */
         body {
-            font-family: 'Press Start 2P', cursive; /* Pixel Font */
+            font-family: 'Press Start 2P', cursive;
             background: black;
             background-size: cover;
             color: white;
@@ -25,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* 🎆 Header */
         .header {
             font-size: 3rem;
             text-shadow: 4px 4px #0f3460;
@@ -43,7 +43,6 @@
             justify-content: center;
         }
 
-        /* 🎨 Section Styles */
         .section {
             padding: 50px 20px;
             border: 4px solid white;
@@ -52,27 +51,6 @@
             box-shadow: 8px 8px #0f3460;
         }
 
-        /* 🖼️ Images */
-        .image-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .image-style {
-            width: 200px;
-            filter: contrast(200%) saturate(200%) brightness(90%);
-            image-rendering: pixelated;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-            .image-style:hover {
-                transform: translateY(-5px);
-                box-shadow: 4px 4px white;
-            }
-
-        /* 🕹️ Buttons */
         .btn-animated {
             display: inline-block;
             margin: 10px;
@@ -92,7 +70,6 @@
                 box-shadow: 4px 4px #3B82F6;
             }
 
-        /* 🌟 Smooth Scroll Effects */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -104,36 +81,50 @@
                 transform: translateY(0);
             }
 
-        /* 🎵 Music Player */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 4px 4px white;
+        .instruction-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
         }
 
-            .music-player audio {
-                width: 200px;
+        .instruction-step {
+            width: 300px; /* Increase container width */
+            height: 400px; /* Increase container height */
+            text-align: center;
+            border: 4px solid white;
+            padding: 15px;
+            background: rgba(22, 33, 62, 0.9);
+            box-shadow: 6px 6px white;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Space out image & text */
+        }
+
+            /* Ensure images fit perfectly */
+            .instruction-step img {
+                width: 100%;
+                height: 70%; /* Increase image size */
+                object-fit: cover; /* Ensure proper scaling */
+                border: 2px solid white;
+                background-color: black;
+            }
+
+
+            .instruction-step:hover {
+                transform: translateY(-5px);
+                box-shadow: 6px 6px #3B82F6;
             }
     </style>
 </head>
 <body>
-    <!-- 🎮 8-Bit Music -->
-    <div class="music-player">
-        <audio id="bg-music" autoplay loop muted>
-            <source src="Mario.mp3" type="audio/mpeg">
-            Your browser does not support the audio tag.
-        </audio>
-    </div>
 
     <div class="hero">
         <h1 class="header fade-in">Welcome to <span style="color:#3B82F6;">Tameion</span></h1>
     </div>
 
-    <!-- 🚀 Introduction Section -->
     <section class="section fade-in">
         <h2>Take Full Control of Your Expenses</h2>
         <p>Dark Mode | Google/iCloud Sign-in | Data Analysis | Unlimited CSV Downloads | User-Friendly YouTube Tutorials</p>
@@ -141,36 +132,64 @@
         <a href="User_Login.aspx" class="btn-animated">Login</a>
     </section>
 
-    <!-- 📊 Features Section -->
     <section class="section fade-in">
         <h2>Our Features</h2>
         <p>Manage your expenses with efficiency and security. Enjoy seamless tracking and data-driven insights.</p>
-        <div class="image-container">
-            <img src="images/1.jpg" alt="Feature 1" class="image-style">
-            <img src="images/2.jpg" alt="Feature 2" class="image-style">
-            <img src="images/3.jpg" alt="Feature 3" class="image-style">
+    </section>
+
+    <!-- 🛠 How to Use Tameion -->
+    <section class="section fade-in">
+        <h2>How to Use Tameion</h2>
+        <p>Follow these simple steps to manage your expenses effectively.</p>
+
+        <div class="instruction-container">
+            <div class="instruction-step">
+                <img src="images/admin_login.png" alt="Admin Login">
+                <p><strong>Admin_Login.aspx:</strong> Admins can log in to manage the system.</p>
+            </div>
+
+            <div class="instruction-step">
+                <img src="images/admin_dashboard.png" alt="Admin Dashboard">
+                <p><strong>Admin_Dashboard.aspx:</strong> View and control all user expenses.</p>
+            </div>
+
+            <div class="instruction-step">
+                <img src="images/expense_calc.png" alt="Expense Calculator">
+                <p><strong>Expense_Calculator.aspx:</strong> Calculate and visualize your expenses.</p>
+            </div>
+
+            <div class="instruction-step">
+                <img src="images/user_dashboard.png" alt="User Dashboard">
+                <p><strong>User_Dashboard.aspx:</strong> Manage and track your personal expenses.</p>
+            </div>
+
+            <div class="instruction-step">
+                <img src="images/user_login.png" alt="User Login">
+                <p><strong>User_Login.aspx:</strong> Securely log in to your account.</p>
+            </div>
+
+            <div class="instruction-step">
+                <img src="images/user_profile.png" alt="User Profile">
+                <p><strong>User_Profile.aspx:</strong> View and edit your profile information.</p>
+            </div>
+
+            <div class="instruction-step">
+                <img src="images/user_registration.png" alt="User Registration">
+                <p><strong>User_Registration.aspx:</strong> Sign up to start managing your expenses.</p>
+            </div>
+
+            <div class="instruction-step">
+                <img src="images/view_expense.png" alt="View Expense">
+                <p><strong>ViewExpense.aspx:</strong> Analyze your expense history.</p>
+            </div>
         </div>
     </section>
 
-    <!-- 📈 Financial Planning Section -->
-    <section class="section fade-in">
-        <h2>Smart Financial Planning</h2>
-        <p>With AI-powered analytics, you can track spending patterns and receive tailored suggestions.</p>
-    </section>
-
-    <!-- 🤝 Our Partners Section -->
-    <section class="section fade-in">
-        <h2>Our Partners</h2>
-        <p>Vanit Patel | Vinit Pansuriya | Harsh Patel | Utsav Gorasiya</p>
-    </section>
-
-    <!-- ⚖️ Footer -->
     <footer class="section fade-in">
         <p>&copy; 2025 Tameion. All Rights Reserved.</p>
         <p><a href="terms_of_service.html">Terms of Service</a> | <a href="privacy_policy.html">Privacy Policy</a></p>
     </footer>
 
-    <!-- 🌟 JavaScript for Smooth Scroll Effects -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const fadeInElements = document.querySelectorAll(".fade-in");
@@ -185,13 +204,7 @@
             }
 
             window.addEventListener("scroll", checkScroll);
-            checkScroll(); // Run on load
-        });
-
-        window.addEventListener("click", function () {
-            let audio = document.getElementById("bg-music");
-            audio.muted = false;
-            audio.play();
+            checkScroll();
         });
     </script>
 </body>

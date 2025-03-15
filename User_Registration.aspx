@@ -142,9 +142,9 @@
             <!-- Avatar Selection Moved Above Full Name -->
             <label>Select Avatar</label>
             <div class="avatar-container">
-                <img src="img/UserIcon.jpeg" class="avatar" onclick="selectAvatar('img/UserIcon.jpeg')" />
-                <img src="img/UserLoginBG.jpeg" class="avatar" onclick="selectAvatar('img/UserLoginBG.jpeg')" />
-                <img src="avatar3.png" class="avatar" onclick="selectAvatar('avatar3.png')" />
+                <img src="img/dino.jpg" class="avatar" onclick="selectAvatar('img/dino.jpg')" />
+                <img src="img/mario.jpg" class="avatar" onclick="selectAvatar('img/mario.jpg')" />
+            <!--   <img src="img/mushroom.jpg" class="avatar" onclick="selectAvatar('img/mushroom.jpg')" />-->
             </div>
 
             <input type="hidden" id="selectedAvatar" runat="server" />
@@ -201,10 +201,6 @@
                 <asp:ListItem Text="USA" Value="USA" />
                 <asp:ListItem Text="UK" Value="UK" />
             </asp:DropDownList>
-            <br />
-
-            <label>Balance</label>
-            <asp:TextBox ID="txtBalance" CssClass="input-field" runat="server" Text="0"></asp:TextBox>
             <br />
 
             <asp:CheckBox ID="chkTerms" runat="server" />

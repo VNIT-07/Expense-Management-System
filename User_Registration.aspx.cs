@@ -23,14 +23,8 @@ namespace Expense_Tracker
             string password = txtPassword.Text.Trim();
             string confirmPassword = txtCpassword.Text.Trim();
             string country = ddlCountry.SelectedValue;
-            decimal balance = 0;
 
-            if (!decimal.TryParse(txtBalance.Text.Trim(), out balance))
-            {
-                Response.Write("<script>alert('Invalid Balance Amount!');</script>");
-                return;
-            }
-
+            // 🔹 Validate Password Match
             if (password != confirmPassword)
             {
                 Response.Write("<script>alert('Passwords do not match!');</script>");
@@ -42,6 +36,7 @@ namespace Expense_Tracker
             {
                 conn.Open();
 
+                // 🔹 Check if Email or Contact Already Exists
                 string checkUserQuery = "SELECT COUNT(*) FROM User_Registration WHERE Email=@Email OR Contact_number=@Contact";
                 using (SqlCommand checkCmd = new SqlCommand(checkUserQuery, conn))
                 {
@@ -56,8 +51,10 @@ namespace Expense_Tracker
                     }
                 }
 
-                string insertQuery = "INSERT INTO User_Registration (U_name, Contact_number, Email, Password, Country, Balance) " +
-                                     "VALUES (@Name, @Contact, @Email, @Password, @Country, @Balance)";
+                // 🔹 Insert New User Without Balance Field
+                string insertQuery = "INSERT INTO User_Registration (U_name, Contact_number, Email, Password, Country,Avatar) " +
+                                     "VALUES (@Name, @Contact, @Email, @Password, @Country,@Avatar)";
+
                 using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
                 {
                     cmd.Parameters.AddWithValue("@Name", fullName);
@@ -65,7 +62,8 @@ namespace Expense_Tracker
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", password);
                     cmd.Parameters.AddWithValue("@Country", country);
-                    cmd.Parameters.AddWithValue("@Balance", balance);
+                    cmd.Parameters.AddWithValue("@Avatar", selectedAvatar.Value); // Store avatar path
+
 
                     int result = cmd.ExecuteNonQuery();
                     if (result > 0)
@@ -82,5 +80,3 @@ namespace Expense_Tracker
         }
     }
 }
-
-

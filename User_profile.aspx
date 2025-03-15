@@ -1,92 +1,68 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User_profile.aspx.cs" Inherits="a.User_profile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User_Profile.aspx.cs" Inherits="Expense_Tracker.User_Profile" %>
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<html>
+<head>
     <title>User Profile</title>
+    <!-- Bootstrap & Custom Styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: black;
+            color: white;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
+
         .profile-container {
-            width: 40%;
-            margin: auto;
-            background: white;
+            width: 400px;
+            margin: 50px auto;
             padding: 20px;
-            box-shadow: 0px 0px 10px gray;
-            border-radius: 8px;
-            margin-top: 50px;
+            border: 3px solid #3B82F6;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 5px 5px #3B82F6;
         }
-        .profile-pic {
+
+        .profile-img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 2px solid gray;
+            border: 3px solid #3B82F6;
+            margin-bottom: 10px;
         }
-        label {
+
+        .btn-custom {
+            background: #3B82F6;
+            color: black;
             font-weight: bold;
-        }
-        .btn {
-            background-color: #007bff;
-            color: white;
+            padding: 10px 20px;
             border: none;
-            padding: 10px 15px;
             cursor: pointer;
-            border-radius: 5px;
         }
-        .btn:hover {
-            background-color: #0056b3;
+
+        .btn-custom:hover {
+            background: black;
+            color: #3B82F6;
+            border: 2px solid #3B82F6;
         }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server" enctype="multipart/form-data">
+    <form id="form1" runat="server">
         <div class="profile-container">
-            <h2>User Profile</h2>
+            <asp:Panel ID="pnlUserProfile" CssClass="profile-container" runat="server">
+                <h2>User Profile</h2>
 
-            <!-- Profile Picture -->
-            <asp:Image ID="imgProfile" runat="server" CssClass="profile-pic" ImageUrl="~/images/default-user.png" />
-            <br /><br />
-            <asp:FileUpload ID="fuProfilePic" runat="server" />
-            <asp:Button ID="btnUpload" runat="server" Text="Upload Picture" CssClass="btn" OnClick="btnUpload_Click" />
-            <br /><br />
+                <!-- Profile Image -->
+                <asp:Image ID="imgProfile" runat="server" CssClass="profile-img" />
 
-            <!-- User Details -->
-            <label>User Name:</label>
-            <asp:Label ID="lblUserName" runat="server" Text="N/A"></asp:Label>
-            <br /><br />
+                <h4><asp:Label ID="lblFullName" runat="server"></asp:Label></h4>
+                <p>Email: <asp:Label ID="lblEmail" runat="server"></asp:Label></p>
+                <p>Contact: <asp:Label ID="lblContact" runat="server"></asp:Label></p>
+                <p>Country: <asp:Label ID="lblCountry" runat="server"></asp:Label></p>
 
-            <label>Email:</label>
-            <asp:Label ID="lblEmail" runat="server" Text="N/A"></asp:Label>
-            <br /><br />
-
-            <label>Password:</label>
-            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" ReadOnly="true"></asp:TextBox>
-            <br /><br />
-
-            <label>Contact:</label>
-            <asp:Label ID="lblContact" runat="server" Text="N/A"></asp:Label>
-            <br /><br />
-
-            <label>Available Balance:</label>
-            <asp:Label ID="lblBalance" runat="server" Text="$0.00"></asp:Label>
-            <br /><br />
-
-            <!-- Update Password -->
-            <h3>Change Password</h3>
-            <label>New Password:</label>
-            <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox>
-            <br /><br />
-
-            <label>Confirm Password:</label>
-            <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
-            <br /><br />
-
-            <asp:Button ID="btnUpdatePassword" runat="server" Text="Update Password" CssClass="btn" OnClick="btnUpdatePassword_Click" />
-            <br /><br />
-
-            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+                <asp:Button ID="btnEditProfile" CssClass="btn-custom" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click"  />
+            </asp:Panel>
         </div>
     </form>
 </body>

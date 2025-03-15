@@ -1,156 +1,249 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Expense_Calculator.aspx.cs" Inherits="a.Expense_Calculator" %>
 
 <!DOCTYPE html>
-<html lang="en">
-<head runat="server">
-    <title>Expense Management System</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
+<html>
+<head>
+    <title>Expense Management</title>
     <style>
-        body {
-/*            padding-top: 56px;*/
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-        .expense-form {
-            max-width: 450px;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-            margin: 50px auto;
-        }
-
-        .gridview-container {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .gridview-container table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .gridview-container th {
-            background-color: #001a66;
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .gridview-container td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .gridview-container tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-
-        .gridview-container tr:hover {
-            background-color: #d6e9ff;
-            transition: 0.3s;
-        }
-
-        .footer {
-            background-color: #001a66;
-            color: white;
-            text-align: center;
+        .navbar {
+            background: #001a66;
             padding: 15px;
-            margin-top: 30px;
+            text-align: left;
         }
 
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.2rem;
+         .navbar a {
+             color: white;
+             text-decoration: none;
+             font-size: 14px;
+             padding: 10px 20px;
+             display: inline-block;
+             border: 3px solid white;
+             box-shadow: 3px 3px 0px black;
+         }
+
+         .navbar a:hover {
+             background: white;
+             color: black;
+         }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #f8f8dc;
+            text-align: center;
         }
 
+        /* Expense Calculator Header */
+        h2 {
+            font-size: 20px;
+            color: #3B82F6;
+            text-shadow: 3px 3px #AAC4F6; /* Light blue shadow */
+        }
+
+
+        .form-container {
+            display: inline-block;
+            padding: 20px;
+            background: #fff;
+            border: 3px solid #34568B;
+            border-radius: 10px;
+            box-shadow: 6px 6px 0px #34568B;
+            text-align: center;
+            width: 320px;
+        }
+
+        input, select {
+            display: block;
+            width: 90%;
+            padding: 10px;
+            margin: 10px auto;
+            border: 2px solid #34568B;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+        }
+
+        h3{
+            color: #34568B;
+        }
+
+        /* Button Styling */
         .btn {
-            transition: all 0.3s ease-in-out;
+            background: #34568B;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 95%;
+            margin: 5px auto;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            transition: 0.3s ease-in-out;
+            box-shadow: 3px 3px #3B82F6;
         }
 
         .btn:hover {
-            opacity: 0.9;
+            background: white;
+            color: #34568B;
+            border: 2px solid #34568B;
+        }
+
+        .btn-no-color {
+            background: none;
+            border: 2px solid #34568B;
+            color: #34568B;
+            padding: 10px;
+            width: 95%;
+            margin: 5px auto;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn-no-color:hover {
+            background: #34568B;
+            color: white;
+        }
+
+        /* Table Enhancements */
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table-custom {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            border: 3px solid #34568B;
+        }
+
+        .table-custom th, .table-custom td {
+            border: 2px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .table-custom th {
+            background: #34568B;
+            color: white;
+        }
+
+    .btn {
+        background: #34568B;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 12px;
+        transition: 0.3s ease-in-out;
+        box-shadow: 3px 3px #3B82F6;
+    }
+
+    .btn:hover {
+        background: white;
+        color: #34568B;
+        border: 2px solid #34568B;
+    }
+
+    .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .button-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+    /* Fix dropdown height */
+    select {
+        width: 90%;
+    }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            background: #34568B;
+            color: white;
+            padding: 10px;
+            box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
-
-<body class="bg-light">
+<body>
+     <div class="navbar">
+     <a href="User_Dashboard.aspx">🔙 Go Back to Dashboard</a>
+    </div>
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="User_dashboard.aspx">Expenses.web</a>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="ViewExpense.aspx"><i class="bi bi-list"></i> View Expenses</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Reports.aspx"><i class="bi bi-bar-chart"></i> Reports</a></li>
-                </ul>
-            </div>
-        </nav>
+        <h2>Expense Management</h2>
 
-        <div class="expense-form">
-            <h2 class="text-center">Expense Tracker</h2>
+        <div class="form-container">
+            <h3>Expense Calculator</h3>
+            <asp:TextBox ID="txtExpensName" runat="server" Placeholder="Expense Name"></asp:TextBox>
+            <asp:TextBox ID="txtPrice" runat="server" Placeholder="Price" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ID="txtQuantity" runat="server" Placeholder="Quantity" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ID="txtDate" runat="server" Placeholder="dd/mm/yyyy" TextMode="Date"></asp:TextBox>
+            <asp:DropDownList ID="ddlPayMethod" runat="server">
+                <asp:ListItem Text="Cash" Value="Cash"></asp:ListItem>
+                <asp:ListItem Text="Credit Card" Value="Credit Card"></asp:ListItem>
+                <asp:ListItem Text="UPI" Value="UPI"></asp:ListItem>
+            </asp:DropDownList>
+            <asp:TextBox ID="txtDescription" runat="server" Placeholder="Description"></asp:TextBox>
 
-            <div class="mb-3">
-                <label class="form-label">Expense Name</label>
-                <asp:TextBox ID="txtExpensName" runat="server" CssClass="form-control" placeholder="Enter expense name"></asp:TextBox>
-            </div>
+            <!-- Buttons -->
+            <asp:Button ID="btnAdd" runat="server" Text="Create" CssClass="btn" OnClick="btnAdd_Click" />
+            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn" OnClick="btnReset_Click" />
 
-            <div class="mb-3">
-                <label class="form-label">Price</label>
-                <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" placeholder="Enter price"></asp:TextBox>
-            </div>
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" OnClick="btnUpdate_Click" Enabled="false" />
+            <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn" OnClick="btnDelete_Click" Enabled="false" />
 
-            <div class="mb-3">
-                <label class="form-label">Quantity</label>
-                <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" TextMode="Number" placeholder="Enter Quantity"></asp:TextBox>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Date</label>
-                <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Payment Method</label>
-                <asp:DropDownList ID="ddlPayMethod" runat="server" CssClass="form-control">
-                    <asp:ListItem>Credit Card</asp:ListItem>
-                    <asp:ListItem>Debit Card</asp:ListItem>
-                    <asp:ListItem>Cash</asp:ListItem>
-                    <asp:ListItem>UPI</asp:ListItem>
-                </asp:DropDownList>
-            </div>
-
-            <asp:Button ID="btnAdd" runat="server" Text="Add Expense" CssClass="btn btn-primary w-100 mb-2" OnClick="btnAdd_Click"/>
-            <asp:Button ID="btnUpdate" runat="server" Text="Update Expense" CssClass="btn btn-success w-100" OnClick="btnup_Click"/>
         </div>
 
-        <div class="container">
-            <div class="gridview-container">
-                <asp:GridView ID="GVData" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover"
-                              AutoGenerateDeleteButton="True" AutoGenerateSelectButton="True"
-                              OnSelectedIndexChanged="GVData_SelectedIndexChanged" DataKeyNames="Id" OnRowDeleting="GVData_RowDeleting">
-                    <Columns>
-                        <asp:BoundField DataField="Name" HeaderText="Expense Name" />
-                        <asp:BoundField DataField="Price" HeaderText="Price" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-                        <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" />
-                        <asp:BoundField DataField="Exp_Created" HeaderText="Date" />
-                        <asp:BoundField DataField="Payment_Method" HeaderText="Payment Method" />
-                    </Columns>
-                </asp:GridView>
-            </div>
+        <!-- GridView -->
+        <div class="table-container">
+            <asp:GridView ID="GVData" runat="server" AutoGenerateColumns="False" CssClass="table-custom" OnSelectedIndexChanged="GVData_SelectedIndexChanged">
+                <Columns>
+                    <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Select" />
+                    <asp:BoundField DataField="Id" HeaderText="ID" />
+                    <asp:BoundField DataField="name" HeaderText="Expense Name" />
+                    <asp:BoundField DataField="price" HeaderText="Price" />
+                    <asp:BoundField DataField="quantity" HeaderText="Quantity" />
+                    <asp:BoundField DataField="total_amount" HeaderText="Total Amount" />
+                    <asp:BoundField DataField="exp_created" HeaderText="Date" />
+                    <asp:BoundField DataField="payment_method" HeaderText="Payment Method" />
+                    <asp:BoundField DataField="description" HeaderText="Description" />
+                </Columns>
+            </asp:GridView>
         </div>
+        <br>
+        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 
-        <footer class="footer">
-            <p>&copy; 2025 Expenses.web. All rights reserved.</p>
-        </footer>
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Expense Tracker. All Rights Reserved.</p>
+            <p>
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+            </p>
+        </div>
     </form>
 </body>
 </html>

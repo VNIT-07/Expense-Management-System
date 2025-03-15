@@ -1,116 +1,149 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin_dashboard.aspx.cs" Inherits="a.Admin_dashboard" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin_Dashboard.aspx.cs" Inherits="Expense_Tracker.Admin_Dashboard" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head runat="server">
-    <title></title>
-</head>
+    <title>Admin Dashboard - Expense Tracker</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Century+Gothic&display=swap" rel="stylesheet"/>
+
     <style>
-        .footer {
-    position: static;
-    bottom: 0;
-    width: 100%;
-}
-
-    .footer a {
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s ease;
-    }
-
-        .footer a:hover {
-            color: #3498db;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
-        /* Fixed Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: #001a66;
-    padding: 10px 20px;
-}
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: #F5F5DC; /* Paper Beige */
+            color: #333;
+            text-align: center;
+        }
 
-/* Prevent content from hiding behind navbar */
-body {
-    padding-top: 56px;
-}
+        .dashboard-header {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #3B82F6; /* Deep Blue */
+            text-shadow: 4px 4px #AAC4F6; /* Light Blue Shadow */
+            margin-bottom: 30px;
+        }
 
-/* Navbar Branding */
-.navbar-brand {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-}
+        .dashboard-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #FFFFFF; /* White */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 8px 8px #3B82F6;
+            border: 4px solid #3B82F6;
+        }
 
-.navbar-brand:hover {
-    color: lightgray;
-}
+        .dashboard-container h2 {
+            color: #3B82F6;
+        }
 
-/* Navbar Icons */
-.nav-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-}
+        .card {
+            border-radius: 12px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-/* Logout Icon */
-.logout-icon i {
-    font-size: 20px;
-    color: white;
-    margin-right: 10px;
-}
+        .table {
+            background: #FFFFFF;
+            border: 3px solid #3B82F6;
+            font-family: 'Press Start 2P', cursive;
+        }
 
-.logout-icon img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-}
+        .btn-danger {
+            background: #E74C3C; /* Red */
+            border: 2px solid #A93226;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
 
-.logout-icon i:hover {
-    color: lightgray;
-}
+        .btn-danger:hover {
+            background: white;
+            color: #E74C3C;
+        }
 
+        .footer {
+            padding: 20px;
+            border-top: 4px solid #3B82F6;
+            background: rgba(200, 200, 200, 0.85);
+            box-shadow: 8px 8px #3B82F6;
+            margin-top: 60px;
+            border-radius: 8px;
+        }
+
+        .footer a {
+            color: #3B82F6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
     </style>
+</head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <!-- Universal Fixed Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
-        <a href="/" class="navbar-brand">Expense.Web</a>
+        <div class="dashboard-container">
+            <div class="dashboard-header">Admin Dashboard</div>
+            <h4>Welcome, <asp:Label ID="lblAdminName" runat="server" Text=""></asp:Label></h4>
 
-        <div class="d-flex align-items-center">
-            <!-- Profile Icon -->
-            <a href="/Profile" class="me-3">
-                <img src="/images/profile.png" alt="Profile" class="nav-icon">
-            </a>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Users</h5>
+                            <p class="card-text"><asp:Label ID="lblTotalUsers" runat="server" Text="0"></asp:Label></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Logout Icon -->
-            <a href="/Logout" class="logout-icon">
-                <i class="bi bi-box-arrow-right"></i>
-                <img src="/images/Logout.png">
-            </a>
-        </div>
-    </div>
-</nav>
+            <!-- Search Bar -->
+            <div class="input-group my-3">
+                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Enter username"></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary" Text="Search" OnClick="btnSearch_Click"/>
+            </div>
 
+            <div class="table-responsive table-bordered p-3 bg-white">
+                <h3>User Management</h3>
+                <asp:GridView ID="GridView1" runat="server" CssClass="table table-bordered"
+                    AutoGenerateColumns="False" DataKeyNames="U_id" OnRowCommand="GridView1_RowCommand">
+                    <Columns>
+                        <asp:BoundField DataField="U_id" HeaderText="User ID" ReadOnly="True" />
+                        <asp:BoundField DataField="U_name" HeaderText="Name" />
+                        <asp:BoundField DataField="Email" HeaderText="Email" />
+                        <asp:BoundField DataField="Contact_number" HeaderText="Contact Number" />
+                        <asp:TemplateField HeaderText="Action">
+                            <ItemTemplate>
+                                <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm"
+                                    CommandName="DeleteUser" CommandArgument='<%# Eval("U_id") %>'
+                                    Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this user?');" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+
+            <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
         </div>
     </form>
 
-    <footer class="footer bg-dark text-light text-center py-3">
-    <div class="container">
-        <p class="mb-1">© 2025 Expenses.web. All rights reserved.</p>
-        <div>
-            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
-        </div>
-    </div>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Expense Tracker. All Rights Reserved.</p>
+        <p><a href="terms_of_service.html">Terms of Service</a> | <a href="privacy_policy.html">Privacy Policy</a></p>
+    </footer>
+
 </body>
 </html>
+

@@ -1,56 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace F1
+namespace Expense_Tracker
 {
-    public partial class ADMINLogin : System.Web.UI.Page
+    public partial class Admin_Login : System.Web.UI.Page
     {
         string strconn = ConfigurationManager.ConnectionStrings["connection2"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // No session used
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-           
             using (SqlConnection conn = new SqlConnection(strconn))
             {
                 try
                 {
                     conn.Open();
-
                     string qry = "SELECT COUNT(*) FROM Admin_Login WHERE email = @Email AND password = @Password";
 
-                    SqlCommand cmd = new SqlCommand(qry, conn);
-                    cmd.Parameters.AddWithValue("@Email", txtUsername.Text);
-                    cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-
-                    int result = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    if (result == 0)
+                    using (SqlCommand cmd = new SqlCommand(qry, conn))
                     {
-                        Response.Write("<script>alert('Invalid login credentials!');</script>");
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
 
-                    }
-                    else
-                    {
-                        //Response.Write("<script>alert('Redirecting to Home page! Welcome!');</script>");
-                        Response.Redirect("Admin_dashboard.aspx");
+                        int result = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        if (result == 0)
+                        {
+                            Response.Write("❌ Invalid email or password!");
+                        }
+                        else
+                        {
+                            // Redirect with email as QueryString
+                            Response.Redirect("Admin_Dashboard.aspx?email=" + txtEmail.Text.Trim(), false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("Error: " + ex.Message);
+                    Response.Write("⚠ Error: " + ex.Message);
                 }
             }
         }
